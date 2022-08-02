@@ -1,0 +1,5 @@
+<script>
+$j(document).ready(function() {
+   $j("#btn-navMeals").remove();
+});
+</script>

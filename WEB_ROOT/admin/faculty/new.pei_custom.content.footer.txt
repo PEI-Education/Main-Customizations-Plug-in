@@ -1,0 +1,9 @@
+<script>
+  $j(document).ready(function() {
+    $j('select[name="gender"]').closest('tr').remove();
+    $j('select[name="Ethnicity"]').closest('tr').remove();
+    $j('input[name="lunch_id"]').closest('tr').remove();
+    $j('input[name="ssn"]').closest('tr').remove();
+    $j('input[name="dob"]').closest('tr').remove();
+  });
+</script>

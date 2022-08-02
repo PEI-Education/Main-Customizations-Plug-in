@@ -1,0 +1,14 @@
+<script>
+// Removes homeless code, equipment flag, date of entry into USA, MESA and AFDC
+
+$j(document).ready(function() {
+  if (document.documentElement.lang == 'en') {
+    $j('tr:contains(Homeless)').remove();
+    $j('tr:contains(Date of entry)').remove();
+  } else if (document.documentElement.lang == 'fr') {
+    $j('tr:contains(Code des sans-abris)').remove();
+    $j('tr:contains(les États-Unis)').remove();
+  }
+  $j('tr:contains(AFDC)').remove();
+});
+</script>

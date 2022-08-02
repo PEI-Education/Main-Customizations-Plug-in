@@ -1,0 +1,5 @@
+<script>
+$j(document).ready(function() {
+    $j("img[src$='btn_silverware.png']").closest('td').remove();
+});
+</script>

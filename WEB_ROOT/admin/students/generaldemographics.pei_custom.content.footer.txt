@@ -1,0 +1,60 @@
+<table>
+  <tr class="headerrow" id="generalInfo">
+    <td colspan="2" class="bold">~[text:psx.htmlc.admin_students.general_demographics.pei_custom.general_info]
+    </td>
+  </tr>
+    <tr id="indigenous">
+      <td class="bold">~[text:psx.htmlc.admin_students.general_demographics.pei_custom.Indigenous_Status]</td>
+      <td>
+          <select name="[01]pei_indigenous"
+              id="selectIndigenous">~[x:codesetoptions;codetype=Indigenous;includeblank;value=~([01]Indigenous)]</select>
+      </td>
+  </tr>
+    <tr id="legalName">
+      <td class="bold">~[text:psx.htmlc.admin_students.general_demographics.pei_custom.student_legal_name] ~[text:psx.html.admin_students.newstudent.last_first_mi]</td>
+      <td>
+          <input type="text" name="[Students.StudentCoreFields]PSCore_Legal_Last_Name" value="" size="25" maxlength="50" id="legallastName">,
+          <input type="text" name="[Students.StudentCoreFields]PSCore_Legal_First_Name" value="" size="25" maxlength="50" id="legalfirstName">
+          <input type="text" name="[Students.StudentCoreFields]PSCore_Legal_Middle_Name" value="" size="15" maxlength="30" id="legalmiddleName">
+      </td>
+  </tr>
+</table>
+
+<div>
+  <select name="[Students]guardianship" id="selectGuardianship">~[x:codesetoptions;codetype=Guardianship;includeblank;value=~([Students]guardianship)]</select>
+</div>
+
+<div>
+  <span id="locate-pei-address" class="yui-button yui-push//-button">
+    <span class="first-child">
+      <a href="https://www.arcgis.com/apps/webappviewer/index.html?id=3db6ec75a9a5400fa56358088e1a4800&extent=-7162735.8801%2C5786025.1196%2C-6930367.3141%2C5918719.8007%2C102100"
+        target="_blank">~[text:psx.htmlc.admin_students.general_demographics.pei_custom.locate_a_pei_address]</a>
+        </span>
+    </span>
+</div>
+
+<script>
+    $j(document).ready(function() {
+        $j('#defaultEthnicity').closest("tr").remove();
+        $j('#hiddenFieldSaveRace').closest("tr").remove();
+        $j('#primaryethnicity').closest('tr').remove();
+        $j('#fieldGuardianEmail').closest('tr').remove();
+        $j('#fieldArea').closest('tr').remove();
+        $j('#fieldSSN').closest('tr').remove();
+        $j("#validatePrimaryAddress").closest("td").append($j("#locate-pei-address"));
+        $j('input[name*="guardianship"]').after($j('#selectGuardianship'));
+        $j('input[name*="guardianship"]').remove();
+        $j('#selectGuardianship').closest('tr').after($j('#indigenous'));
+        $j('#lastName').closest('tr').after($j('#legalName'));
+        $j('tr:contains(Ethnicit)').remove();
+        $j('#fieldHomePhone').closest('tr').before($j('#generalInfo'));
+        $j('#current_father').prop('readonly',true);
+        $j('#fieldFatherDayPhone').prop('readonly',true);
+        $j('#fieldFatherEmployer').prop('readonly',true);
+        $j('#fieldFatherHomePhone').prop('readonly',true);
+        $j('#current_mother').prop('readonly',true);
+        $j('#fieldMotherDayPhone').prop('readonly',true);
+        $j('#fieldMotherEmployer').prop('readonly',true);
+        $j('#fieldMotherHomePhone').prop('readonly',true);
+    });
+</script>

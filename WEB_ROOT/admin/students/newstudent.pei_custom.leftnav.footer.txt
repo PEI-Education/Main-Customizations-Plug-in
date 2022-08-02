@@ -1,0 +1,48 @@
+
+<table>
+  <tr id="indigenous">
+      <td class="bold">~[text:psx.htmlc.admin_students.newstudent.pei_custom.Indigenous_Status]</td>
+      <td>
+          <select name="[01]pei_indigenous"
+              id="selectIndigenous">~[x:codesetoptions;codetype=Indigenous;includeblank;value=~([01]Indigenous)]</select>
+      </td>
+  </tr>
+  <tr id="guardianship">
+      <td class="bold">~[text:psx.htmlc.admin_students.newstudent.pei_custom.guardianship]</td>
+      <td>
+          <select name="[Students]guardianship" id="selectGuardianship">~[x:codesetoptions;codetype=Guardianship;includeblank;value=~([Students]guardianship)]</select>
+      </td>
+  </tr>
+  <tr  id="legalName">
+      <td class="bold">~[text:psx.htmlc.admin_students.newstudent.pei_custom.student_legal_name] ~[text:psx.html.admin_students.newstudent.last_first_mi]</td>
+      <td>
+
+          <input type="text" name="[Students]PSCore_Legal_Last_Name" value="" size="25" maxlength="50" id="legallastName">,
+          <input type="text" name="[Students]PSCore_Legal_First_Name" value="" size="25" maxlength="50" id="legalfirstName">
+          <input type="text" name="[Students]PSCore_Legal_Middle_Name" value="" size="15" maxlength="30" id="legalmiddleName">
+      </td>
+  </tr>
+</table>
+
+
+<div>
+  <span id="locate-pei-address" class="yui-button yui-push//-button">
+    <span class="first-child">
+        <a href="https://www.arcgis.com/apps/webappviewer/index.html?id=3db6ec75a9a5400fa56358088e1a4800&extent=-7162735.8801%2C5786025.1196%2C-6930367.3141%2C5918719.8007%2C102100" target="_blank">~[text:psx.htmlc.admin_students.new_student.pei_custom.locate_a_pei_address]</a>
+    </span>
+  </span>
+</div>
+<script>
+  $j(document).ready(function() {
+    $j('#fieldDOB').closest('tr').before($j('#legalName'));
+    $j('#fieldSSN').closest('tr').remove();
+    $j("#validatePrimaryAddress").closest("td").append($j("#locate-pei-address"));
+    $j('#fieldStuNum').closest('tr').after($j('#guardianship'));
+    $j('#guardianship').after($j('#indigenous'));
+    if (document.documentElement.lang == 'en') {
+        $j('tr:contains(Track)').remove();
+    } else if (document.documentElement.lang == 'fr') {
+        $j('tr:contains(Suivre)').remove();
+    }
+  });
+</script>

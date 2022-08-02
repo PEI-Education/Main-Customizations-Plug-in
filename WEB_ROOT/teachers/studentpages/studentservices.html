@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!-- By Luke Walker, based on https://support.powerschool.com/exchange/view.action?download.id=646 -->
+<html>
+<head>
+<title>~[text:psx.htmlc.teachers.studentpages.studentservices.student_services]</title>
+~[wc:commonscripts]
+<link href="/images/css/screen.css" rel="stylesheet" media="screen">
+<link href="/images/css/print.css" rel="stylesheet" media="print">
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Begin
+function formHandler(form){
+var URL = document.navigation.page.options[document.navigation.page.selectedIndex].value;
+window.location.href = URL;
+}
+
+// End -->
+</SCRIPT>
+
+
+</head>
+
+<body>
+
+~[wc:teachers_header_fr_css]
+
+ <form name="navigation"><span class="account-photo">~[studenttitlephoto]</span><h1>Student Services<span class="nav-teacher"><select name="page" size=1 onChange="javascript:formHandler()"><option value="">Student Services<option value="">--------------------~[x:teacherpages]</select></span>~[studentalert]</h1>
+<p>~(studentname) &nbsp; ~(grade_level) &nbsp; ~(student_number) &nbsp; &nbsp; ~(track) &nbsp; &nbsp; ~(studschoolabbr) &nbsp; &nbsp; ~[enrollmentstatus]</p></form>
+
+<div class="box-round">
+
+	<table class="linkDescList">
+    	<colgroup>
+    	    <col width="30%">
+    	    <col>
+    	</colgroup>
+      <tr class="headerrow">
+        <td>Label</td>
+        <td>Value</td>
+      </tr>
+      <tr>
+    	    <td><strong>~[text:psx.htmlc.teachers.studentpages.studentservices.emergency_plan]</strong></td>
+    	    <td>~[if.~([Students.U_Students_Extension]pei_emergencyplan)=1]~[text:psx.htmlc.teachers.studentpages.studentservices.yes][else]~[text:psx.htmlc.teachers.studentpages.studentservices.no][/if]</td>
+        </tr>
+        <tr>
+    	    <td><strong>~[text:psx.htmlc.teachers.studentpages.studentservices.behaviour_plan]</strong></td>
+    	    <td>~[if.~([Students.U_Students_Extension]pei_bsp)=1]~[text:psx.htmlc.teachers.studentpages.studentservices.yes][else]~[text:psx.htmlc.teachers.studentpages.studentservices.no][/if]</td>
+        </tr>
+        <tr>
+    	    <td><strong>~[text:psx.htmlc.teachers.studentpages.studentservices.iep]</strong></td>
+    	    <td>~[if.~([Students.U_Students_Extension]pei_iep)=1]~[text:psx.htmlc.teachers.studentpages.studentservices.yes][else]~[text:psx.htmlc.teachers.studentpages.studentservices.no][/if]</td>
+        </tr>
+        <tr>
+    	    <td><strong>~[text:psx.htmlc.teachers.studentpages.studentservices.red_file]</strong></td>
+    	    <td>~[if.~([Students.U_Students_Extension]pei_redfile)=1]~[text:psx.htmlc.teachers.studentpages.studentservices.yes][else]~[text:psx.htmlc.teachers.studentpages.studentservices.no][/if]</td>
+        </tr>
+        <tr>
+    	    <td><strong>~[text:psx.htmlc.teachers.studentpages.studentservices.studentservicesteam]</strong></td>
+    	    <td>~([Students.U_Students_Extension]pei_studentservicesteam)</td>
+        </tr>
+        <tr class="headerrow" id="generalInfo">
+          <td colspan="2" class="bold">~[text:psx.htmlc.teachers.studentpages.studentservices.student_exceptionalities_and_adaptations]</td>
+        </tr>
+        <tr>
+    	    <td><strong>~[text:psx.htmlc.teachers.studentpages.studentservices.student_exceptionalities]</strong></td>
+    	    <td>~([Students.U_CUSTOM_ALERTS]Alert_SPED)</td>
+        </tr>
+        <tr>
+          <td><strong>~[text:psx.htmlc.teachers.studentpages.studentservices.exceptionality] 1</strong></td>
+          <td>~([Students.U_Students_Extension]pei_exceptionality1)</td>
+        </tr>
+        <tr>
+          <td><strong>~[text:psx.htmlc.teachers.studentpages.studentservices.exceptionality] 2</strong></td>
+          <td>~([Students.U_Students_Extension]pei_exceptionality2)</td>
+        </tr>
+        <tr>
+          <td><strong>~[text:psx.htmlc.teachers.studentpages.studentservices.exceptionality] 3</strong></td>
+          <td>~([Students.U_Students_Extension]pei_exceptionality3)</td>
+        </tr>
+        <tr>
+          <td><strong>~[text:psx.htmlc.teachers.studentpages.studentservices.exceptionality] 4</strong></td>
+          <td>~([Students.U_Students_Extension]pei_exceptionality4)</td>
+        </tr>
+        <tr>
+          <td><strong>~[text:psx.htmlc.teachers.studentpages.studentservices.exceptionality] 5</strong></td>
+          <td>~([Students.U_Students_Extension]pei_exceptionality5)</td>
+        </tr>
+        <tr>
+    	    <td><strong>~[text:psx.htmlc.teachers.studentpages.studentservices.adaptations]</strong></td>
+    	    <td>~([Students.U_Students_Extension]pei_adaptations)</td>
+        </tr>
+    </table>
+
+</div>
+
+<br>
+<!-- end of content of bounding box -->
+
+~[wc:teachers_footer_fr_css]
+
+</body>
+</html>

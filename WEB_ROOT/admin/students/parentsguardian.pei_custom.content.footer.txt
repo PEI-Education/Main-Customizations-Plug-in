@@ -1,0 +1,14 @@
+<script>
+  $j(document).ready(function(){
+    $j('#current_mother').prop('readonly',true);
+    $j('#motherdayphone').prop('readonly',true);
+    $j('#current_father').prop('readonly',true);
+    $j('#fatherdayphone').prop('readonly',true);
+    $j('#guardian_ln').prop('readonly',true);
+    $j('#guardian_fn').prop('readonly',true);
+    $j('#guardian_mn').prop('readonly',true);
+    $j('#guardiandayphone').prop('readonly',true);
+    $j('#guardianrelcode').prop('readonly',true);
+    $j('#guardianemail').prop('readonly',true);
+  });
+</script>
