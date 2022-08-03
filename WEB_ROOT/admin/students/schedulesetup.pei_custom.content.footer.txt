@@ -1,0 +1,12 @@
+<table class="hide">
+    <tr id="nextyearhr">
+        <td class="bold">Next Year Home Room</td>
+        <td><input type="text" name="[01]Sched_NextYearHomeRoom" value="" size="25"></td>
+    </tr>
+</table>
+<script>
+    $j(document).ready(function(){
+        $j('td:contains(~[text:psx.html.admin_students.schedulesetup.next_school_indicator])').closest('tr').after($j('#nextyearhr'));
+        $j('.hide').hide()
+    });
+</script>

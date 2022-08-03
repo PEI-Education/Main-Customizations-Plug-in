@@ -1,5 +1,6 @@
 <script>
 $j(document).ready(function() {
+    $j("th:contains(~[text]psx.html.teachers.home.submit_lunch_counts[/text])").remove();
     $j("img[src$='btn_silverware.png']").closest('td').remove();
 });
 </script>

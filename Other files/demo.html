@@ -1,0 +1,562 @@
+
+
+<div data-title="psx.html.teachers_powerteacherpro_students.demo.demographics"
+data-param-frn="studentFrn?"
+data-linked-from-students="true"
+class="external-page">
+
+<div data-pss-sticky-header-group="StickyHeaderGroup">
+   <div id="content-selector" class="content-selector">
+       <div data-pss-student-navigation="psx.html.teachers_powerteacherpro_students.demo.demographics"></div>
+   </div>
+
+   <div data-ng-controller="studentDemographicsController" class="div-content"
+        data-pss-message-prefixes="psx.html.teachers_powerteacherpro_students.demo">
+       <div class="data-panel" >
+           <!-- collapsible student info panel -->
+           <accordion id="student-demographics-accordion" data-close-others="false">
+
+               <accordion-group id="student-demographics-accordion-group"
+                                data-ng-class="{'panel-blue': studentDemoCtrlData.studentDetail.isPanelOpen}"
+                                data-is-open="studentDemoCtrlData.studentDetail.isPanelOpen">
+
+                   <accordion-heading class="col-sm-12" tabindex="-1"
+                                      id="student-demographics-accordion-heading"
+                                      data-ng-click="studentDemoCtrlData.studentDetail.isPanelOpen = !studentDemoCtrlData.studentDetail.isPanelOpen">
+                       <div class="clickable-panel-heading">
+                           <span class="ps-icon"
+                                 data-ng-class="{'ps-triangle-right-dark-blue': !studentDemoCtrlData.studentDetail.isPanelOpen, 'ps-triangle-down-white': studentDemoCtrlData.studentDetail.isPanelOpen}"
+                                 role="img" aria-label="{{'psx.xte.html.shared.settings.standards_grades.toggle_accordion_panel'|translate}}">
+                           </span>
+                           <h3>~[text:psx.html.teachers_powerteacherpro_students.demo.student_information]</h3>
+                       </div>
+                   </accordion-heading>
+
+                   <div>
+                       <!--Personal Info-->
+                       <div class="row form-group-title">
+                           <div class="col-xs-12">
+                               <h3>
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.personal_information]
+                               </h3>
+                               <hr class="slim">
+                           </div>
+                       </div>
+                       <div class="row form-group-body">
+                           <div class="col-xs-12 col-sm-6">
+                               <label id="demo_student_name_label" for="demo_student_name">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.name]
+                               </label>
+                               <input id="demo_student_name" type="text" class="form-control ps-readonly" readonly value="~(studentname)">
+                           </div>
+                           <div class="col-xs-12 col-sm-3">
+                               <label id="demo_student_phone_label" for="demo_student_phone">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.home_phone]
+                               </label>
+                               <input id="demo_student_phone" type="text" class="form-control ps-readonly" readonly value="~(home_phone)">
+                           </div>
+                           <div class="col-xs-12 col-sm-3">
+                               <label id="demo_student_login_label" for="demo_student_login">
+                                   Student Login
+                               </label>
+                               <input id="demo_student_login" type="text" class="form-control ps-readonly" readonly value="~([Students.U_Students_Extension]pei_studentlogin)">
+                           </div>
+
+                           <div class="col-xs-6 col-sm-3">
+                               <label id="demo_student_gender_label" for="demo_student_gender">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.gender]
+                               </label>
+                               <input id="demo_student_gender" type="text" class="form-control ps-readonly" readonly value="~(gender;uppercase)">
+                           </div>
+                           <div class="col-xs-6 col-sm-3">
+                               <label id="demo_student_age_label" for="demo_student_age">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.age]
+                               </label>
+                               <input id="demo_student_age" type="text" class="form-control ps-readonly" readonly value="~(age)">
+                           </div>
+                           <div class="col-xs-6 col-sm-3">
+                               <label id="demo_student_dob_label" for="demo_student_dob">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.dob]
+                               </label>
+                               <input id="demo_student_dob" type="text" class="form-control ps-readonly" readonly value="~(dob)">
+                           </div>
+<!--Add Student Password -->
+                           <div class="col-xs-12 col-sm-3">
+                               <label id="demo_student_pass_label" for="demo_student_pass">
+                                       Password
+                               </label>                                    
+                               <button id="toggleButton" onClick="togglePassword()">Show</button>
+                               <input id="demo_student_pass" style="display:none" type="text" class="form-control ps-readonly" readonly value="~([Students.U_Students_Extension]pei_password)">
+
+                           </div>
+<!-- Hide ethnicity
+                           <div class="col-xs-6 col-sm-3">
+                               <label id="demo_student_ethnicity_label" for="demo_student_ethnicity">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.ethnicity]
+                               </label>
+                               <input id="demo_student_ethnicity" type="text" class="form-control ps-readonly" readonly value="~(ethnicity)">
+                           </div>
+-->                                
+                       </div>
+                       <!--END Personal Info-->
+
+                       <!--Address-->
+                       <div class="row form-group-title">
+                           <div class="col-xs-12">
+                               <h3>
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.address]
+                               </h3>
+                               <hr class="slim">
+                           </div>
+                       </div>
+                       <div class="row form-group-body">
+                           <div class="col-xs-6 col-sm-3">
+                               <label id="demo_student_address_street_label" for="demo_student_address_street">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.address_street]
+                               </label>
+                               <input id="demo_student_address_street" type="text" class="form-control ps-readonly" readonly value="~(street)">
+                           </div>
+                           <div class="col-xs-6 col-sm-3">
+                               <label id="demo_student_address_city_label" for="demo_student_address_city">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.address_city]
+                               </label>
+                               <input id="demo_student_address_city" type="text" class="form-control ps-readonly" readonly value="~(city)">
+                           </div>
+                           <div class="col-xs-6 col-sm-3">
+                               <label id="demo_student_address_state_label" for="demo_student_address_state">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.address_state]
+                               </label>
+                               <input id="demo_student_address_state" type="text" class="form-control ps-readonly" readonly value="~(state)">
+                           </div>
+                           <div class="col-xs-6 col-sm-3">
+                               <label id="demo_student_address_zip_label" for="demo_student_address_zip">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.address_zip]
+                               </label>
+                               <input id="demo_student_address_zip" type="text" class="form-control ps-readonly" readonly value="~(zip)">
+                           </div>
+<!-- Hide Area/Neighborhood
+                           <div class="col-xs-12 col-sm-12">
+                               <label id="demo_student_area_label" for="demo_student_area">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.areaneighborhood]
+                               </label>
+                               <input id="demo_student_area" type="text" class="form-control ps-readonly" readonly value="~(area)">
+                           </div>
+-->
+                       </div>
+                       <!--END Address-->
+
+                       <!--Mailing Address-->
+                       <div class="row form-group-title">
+                           <div class="col-xs-12">
+                               <h3>
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.mailing_address]
+                               </h3>
+                               <hr class="slim">
+                           </div>
+                       </div>
+                       <div class="row form-group-body">
+                           <div class="col-xs-6 col-sm-3">
+                               <label id="demo_student_m_address_street_label" for="demo_student_m_address_street">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.mailing_address_street]
+                               </label>
+                               <input id="demo_student_m_address_street" type="text" class="form-control ps-readonly" readonly value="~(mailing_street)">
+                           </div>
+                           <div class="col-xs-6 col-sm-3">
+                               <label id="demo_student_m_address_city_label" for="demo_student_m_address_city">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.mailing_address_city]
+                               </label>
+                               <input id="demo_student_m_address_city" type="text" class="form-control ps-readonly" readonly value="~(mailing_city)">
+                           </div>
+                           <div class="col-xs-6 col-sm-3">
+                               <label id="demo_student_m_address_state_label" for="demo_student_m_address_state">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.mailing_address_state]
+                               </label>
+                               <input id="demo_student_m_address_state" type="text" class="form-control ps-readonly" readonly value="~(mailing_state)">
+                           </div>
+                           <div class="col-xs-6 col-sm-3">
+                               <label id="demo_student_m_address_zip_label" for="demo_student_m_address_zip">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.mailing_address_zip]
+                               </label>
+                               <input id="demo_student_m_address_zip" type="text" class="form-control ps-readonly" readonly value="~(mailing_zip)">
+                           </div>
+                       </div>
+                       <!--END Mailing Address-->
+
+                       <!--Misc Info-->
+                       <div class="row form-group-title">
+                           <div class="col-xs-12">
+                               <h3>
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.misc_information]
+                               </h3>
+                               <hr class="slim">
+                           </div>
+                       </div>
+                       <div class="row form-group-body">
+
+                           <div class="col-xs-12 col-sm-3">
+                               <label id="demo_student_homeroom_label" for="demo_student_homeroom">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.home_room]
+                               </label>
+                               <input id="demo_student_homeroom" type="text" class="form-control ps-readonly" readonly value="~(home_room)">
+                           </div>
+                           <div class="col-xs-6 col-sm-3">
+                               <label id="demo_student_lockernumber_label" for="demo_student_lockernumber">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.locker_number]
+                               </label>
+                               <input id="demo_student_lockernumber" type="text" class="form-control ps-readonly" readonly value="~(locker_number)">
+                           </div>
+                           <div class="col-xs-6 col-sm-6">
+                               <label id="demo_student_lockercombo_label" for="demo_student_lockercombo">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.locker_combination]
+                               </label>
+                               <input id="demo_student_lockercombo" type="text" class="form-control ps-readonly" readonly value="~(locker_combination)">
+                           </div>
+
+                           <div class="col-xs-6 col-sm-3">
+                               <label id="demo_student_gradelevel_label" for="demo_student_gradelevel">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.grade_level]
+                               </label>
+                               <input id="demo_student_gradelevel" type="text" class="form-control ps-readonly" readonly value="~(grade_level)">
+                           </div>
+                           <div class="col-xs-6 col-sm-9">
+                               <label id="demo_student_gradyear_label" for="demo_student_gradyear">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.graduation_year]
+                               </label>
+                               <input id="demo_student_gradyear" type="text" class="form-control ps-readonly" readonly value="~(graduation_year)">
+                           </div>
+
+
+                           <div class="col-xs-6 col-sm-3">
+                               <label id="demo_student_studentnum_label" for="demo_student_studentnum">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.student_number]
+                               </label>
+                               <input id="demo_student_studentnum" type="text" class="form-control ps-readonly" readonly value="~(student_number)">
+                           </div>
+                           <div class="col-xs-6 col-sm-3">
+                               <label id="demo_student_id_label" for="demo_student_id">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.student_id]
+                               </label>
+                               <input id="demo_student_id" type="text" class="form-control ps-readonly" readonly value="~([students]id)">
+                           </div>
+                           <div class="col-xs-6 col-sm-3">
+                               <label id="demo_student_state_studentnum_label" for="demo_student_state_studentnum">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.state_student_number]
+                               </label>
+                               <input id="demo_student_state_studentnum" type="text" class="form-control ps-readonly" readonly value="~(state_studentnumber)">
+                           </div>
+                           <div class="col-xs-6 col-sm-3">
+                               <label id="demo_student_ytd_label" for="demo_student_ytd">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.aggregate_days_ytd]
+                               </label>
+                               <input id="demo_student_ytd" type="text" class="form-control ps-readonly" readonly value="~(aggmemdaysytd)">
+                           </div>
+                       </div>
+                       <!--END Misc Info-->
+                   </div>
+               </accordion-group>
+           </accordion>
+           <!--END Student Demographics-->
+
+
+           <!--***-->
+           <!--***-->
+           <!--***-->
+           <!--***           Contacts Data to follow-->
+           <!--***-->
+           <!--***-->
+           <!--*** -->
+           <h2>~[text:psx.html.teachers_powerteacherpro_students.demo.contacts] ({{studentDemoCtrlData.contacts.length}})</h2>
+           <hr class="slim">
+
+           <!--banner if no contacts-->
+           <div class="alert alert-info" data-ng-if="studentDemoCtrlData.contacts.length == 0">
+               ~[text:psx.html.teachers_powerteacherpro_students.demo.contact_no_contacts]
+           </div>
+
+           <accordion id="student-contacts-accordion" data-close-others="false">
+
+               <accordion-group id="{{'student-contacts-accordion-' + $index}}"
+                                data-ng-repeat="contact in studentDemoCtrlData.contacts track by $index"
+                                data-ng-class="{'panel-blue': contact.isPanelOpen}"
+                                data-is-open="contact.isPanelOpen">
+
+                   <accordion-heading class="col-sm-12" tabindex="-1"
+                                      data-ng-click="contact.isPanelOpen = !contact.isPanelOpen">
+                       <div class="clickable-panel-heading hasSubhead">
+                           <span class="ps-icon"
+                                 data-ng-class="{'ps-triangle-right-dark-blue': !contact.isPanelOpen, 'ps-triangle-down-white': contact.isPanelOpen}"
+                                 role="img" aria-label="{{'psx.xte.html.shared.settings.standards_grades.toggle_accordion_panel'|translate}}">
+                           </span>
+                           <h3>{{contact._name != '' ? contact._name : '~[text:psx.html.teachers_powerteacherpro_students.demo.contact_no_name]: ' + contact.contactid}}</h3>
+                           <div class="clickable-panel-subhead">{{contact._relationship}}</div>
+                       </div>
+                   </accordion-heading>
+
+                   <div>
+
+                       <div class="row form-group-body">
+                           <!--admin entered freeform notes. could contain all sorts of gratuitous information-->
+                           <div class="col-xs-12" data-ng-if="studentDemoCtrlData.isUnlimitedContacts && contact._permissions.relationshipNote != null && contact._permissions.relationshipNote.length > 0">
+                               <div class="alert alert-info">
+                                   {{contact._permissions.relationshipNote | limitTo : contact.limit}}
+                                   <span data-ng-if="contact._permissions.relationshipNote.length > contact.limit">... </span>
+                                   <a data-ng-if="contact._permissions.relationshipNote.length > contact.limit" class="show-more"
+                                      data-ng-click="studentDemoCtrlData.newSize(contact,contact._permissions.relationshipNote.length)">
+                                       ~[text:psx.html.teachers_powerteacherpro_students.demo.show_more]
+                                   </a>
+                                   <a data-ng-if="studentDemoCtrlData.NOTESTOP !== contact.limit" class="show-less"
+                                      data-ng-click="studentDemoCtrlData.newSize(contact,studentDemoCtrlData.NOTESTOP)">
+                                       ~[text:psx.html.teachers_powerteacherpro_students.demo.show_less]
+                                   </a>
+                               </div>
+                           </div>
+                           <!--END notes-->
+
+                           <!--Contacts Rights/Permissions-->
+                           <div class="col-xs-6 col-sm-3" data-ng-if="contact._permissions.custodial != null">
+                               <label id="{{'contact-custody-label-' + $index}}" for="{{'contact-custody-' + $index}}">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.contact_has_custody]
+                               </label>
+                               <input id="{{'contact-custody-' + $index}}" type="text" class="form-control ps-readonly" readonly
+                                      value="{{contact._permissions.custodial == true ? '~[text:psx.html.teachers_powerteacherpro_students.demo.yes]' : contact._permissions.custodial == false ? '~[text:psx.html.teachers_powerteacherpro_students.demo.no]' : contact._permissions.custodial}}">
+                           </div>
+                           <div class="col-xs-6 col-sm-3" data-ng-if="contact._permissions.livesWith != null">
+                               <label id="{{'contact-lives-with-label-' + $index}}" for="{{'contact-lives-with-' + $index}}">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.contact_lives_with]
+                               </label>
+                               <input id="{{'contact-lives-with-' + $index}}" type="text" class="form-control ps-readonly" readonly
+                                      value="{{contact._permissions.livesWith == true ? '~[text:psx.html.teachers_powerteacherpro_students.demo.yes]' : contact._permissions.livesWith == false ? '~[text:psx.html.teachers_powerteacherpro_students.demo.no]' : contact._permissions.livesWith}}">
+                           </div>
+                           <div class="col-xs-6 col-sm-3" data-ng-if="contact._permissions.schoolPickup != null">
+                               <label id="{{'contact-school-pickup-label-' + $index}}" for="{{'contact-school-pickup-' + $index}}">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.contact_school_pickup]
+                               </label>
+                               <input id="{{'contact-school-pickup-' + $index}}" type="text" class="form-control ps-readonly" readonly
+                                      value="{{contact._permissions.schoolPickup == true ? '~[text:psx.html.teachers_powerteacherpro_students.demo.yes]' : contact._permissions.schoolPickup == false ? '~[text:psx.html.teachers_powerteacherpro_students.demo.no]' : contact._permissions.schoolPickup}}">
+                           </div>
+                           <div class="col-xs-6 col-sm-3" data-ng-if="contact._permissions.emergency != null">
+                               <label id="{{'contact-emergency-contact-label-' + $index}}" for="{{'contact-emergency-contact-' + $index}}">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.contact_emergency_contact]
+                               </label>
+                               <input id="{{'contact-emergency-contact-' + $index}}" type="text" class="form-control ps-readonly" readonly
+                                      value="{{contact._permissions.emergency == true ? '~[text:psx.html.teachers_powerteacherpro_students.demo.yes]' : contact._permissions.emergency == false ? '~[text:psx.html.teachers_powerteacherpro_students.demo.no]' : contact._permissions.emergency}}">
+                           </div>
+                           <div class="col-xs-6 col-sm-3" data-ng-if="contact._permissions.receivesMail != null">
+                               <label id="{{'contact-receives-mail-label-' + $index}}" for="{{'contact-receives-mail-' + $index}}">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.contact_receives_mail]
+                               </label>
+                               <input id="{{'contact-receives-mail-' + $index}}" type="text" class="form-control ps-readonly" readonly
+                                      value="{{contact._permissions.receivesMail == true ? '~[text:psx.html.teachers_powerteacherpro_students.demo.yes]' : contact._permissions.receivesMail == false ? '~[text:psx.html.teachers_powerteacherpro_students.demo.no]' : contact._permissions.receivesMail}}">
+                           </div>
+                           <div class="col-xs-6 col-sm-3" data-ng-if="contact._permissions.canAccessData != null">
+                               <label id="{{'contact-data-access-label-' + $index}}" for="{{'contact-data-access-' + $index}}">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.contact_data_access]
+                               </label>
+                               <input id="{{'contact-data-access-' + $index}}" type="text" class="form-control ps-readonly" readonly
+                                      value="{{contact._permissions.canAccessData == true ? '~[text:psx.html.teachers_powerteacherpro_students.demo.yes]' : contact._permissions.canAccessData == false ? '~[text:psx.html.teachers_powerteacherpro_students.demo.no]' : contact._permissions.canAccessData}}">
+                           </div>
+                       </div>
+                       <!--END Notes and Contacts Rights/Permissions-->
+
+                       <!--Contact Demographic Data-->
+                       <div class="row form-group-title">
+                           <div class="col-xs-12">
+                               <h3>
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.contact_demographics]
+                               </h3>
+                               <hr class="slim">
+                           </div>
+                       </div>
+                       <div class="row form-group-body">
+                           <div class="col-xs-6 col-sm-3">
+                               <label id="{{'contact-relationship-label-' + $index}}" for="{{'contact-relationship-' + $index}}">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.contact_relationship]
+                               </label>
+                               <input id="{{'contact-relationship-' + $index}}" type="text" class="form-control ps-readonly" readonly
+                                      value="{{contact._relationship ? contact._relationship : '--'}}">
+                           </div>
+                           <div class="col-xs-6 col-sm-3" data-ng-if="studentDemoCtrlData.isUnlimitedContacts">
+                               <label id="{{'contact-gender-label' + $index}}" for="{{'contact-gender-' + $index}}">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.contact_gender]
+                               </label>
+                               <input id="{{'contact-gender-' + $index}}" type="text" class="form-control ps-readonly" readonly
+                                      value="{{contact.gender ? contact.gender : '--'}}">
+                           </div>
+                           <div class="col-xs-12 col-sm-6 col-md-3">
+                               <label id="{{'contact-employer-label-' + $index}}" for="{{'contact-employer-' + $index}}">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.contact_employer]
+                               </label>
+                               <input id="{{'contact-employer-' + $index}}" type="text" class="form-control ps-readonly" readonly
+                                      value="{{contact.employer ? contact.employer : '--'}}">
+                           </div>
+                       </div>
+                       <!--END Contact Demographic Data-->
+
+                       <!--Address-->
+                       <div class="row form-group-title" data-ng-if="studentDemoCtrlData.isUnlimitedContacts">
+                           <div class="col-xs-12">
+                               <h3>
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.contact_address]
+                               </h3>
+                               <hr class="slim">
+                           </div>
+                       </div>
+                       <div class="row form-group-body" data-ng-if="studentDemoCtrlData.isUnlimitedContacts && contact._addresses != null && contact._addresses.length == 0">
+                           <!--no address-->
+                           <div class="col-xs-12">
+                               <span class="info">~[text:psx.html.teachers_powerteacherpro_students.demo.contact_no_data]</span>
+                           </div>
+                       </div>
+                       <!--no address, hide this whole thing - but if showing, only show 1 address-->
+                       <div class="row form-group-body"  data-ng-if="studentDemoCtrlData.isUnlimitedContacts && contact._addresses != null && contact._addresses.length > 0">
+                           <div class="col-xs-6 col-sm-3">
+                               <label id="{{'contact-address-street-label-' + $index}}" for="{{'contact-address-street-' + $index}}">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.contact_address_street]
+                               </label>
+                               <input id="{{'contact-address-street-' + $index}}" type="text" class="form-control ps-readonly" readonly
+                                      value="{{contact._addresses[0].street ? contact._addresses[0].street : '--'}}">
+                               <!--Only show linetwo if it has value-->
+                               <label id="{{'contact-address-street-label-' + $index + 'b'}}" data-ng-if="contact._addresses[0].linetwo != null"
+                                      class="sr-only" for="{{'contact-address-street-' + $index}}">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.contact_address_street_2]
+                               </label>
+                               <input id="{{'contact-address-street-' + $index + 'b'}}" data-ng-if="contact._addresses[0].linetwo != null"
+                                      type="text" class="form-control ps-readonly" readonly
+                                      value="{{contact._addresses[0].linetwo}}">
+                           </div>
+                           <div class="col-xs-6 col-sm-3">
+                               <label id="{{'contact-address-city-label-' + $index}}" for="{{'contact-address-city-' + $index}}">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.contact_address_city]
+                               </label>
+                               <input id="{{'contact-address-city-' + $index}}" type="text" class="form-control ps-readonly" readonly
+                                      value="{{contact._addresses[0].city ? contact._addresses[0].city : '--'}}">
+                           </div>
+                           <div class="col-xs-6 col-sm-3">
+                               <label id="{{'contact-address-state-label-' + $index}}" for="{{'contact-address-state-' + $index}}">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.contact_address_state]
+                               </label>
+                               <input id="{{'contact-address-state-' + $index}}" type="text" class="form-control ps-readonly" readonly
+                                      value="{{contact._addresses[0].state ? contact._addresses[0].state : '--'}}">
+                           </div>
+                           <div class="col-xs-6 col-sm-3">
+                               <label id="{{'contact-address-zip-label-' + $index}}" for="{{'contact-address-zip-' + $index}}">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.contact_address_zip]
+                               </label>
+                               <input id="{{'contact-address-zip-' + $index}}" type="text" class="form-control ps-readonly" readonly
+                                      value="{{contact._addresses[0].postalcode ? contact._addresses[0].postalcode : '--'}}">
+                           </div>
+                       </div>
+                       <!--END Address-->
+
+                       <!--Phone Numbers-->
+                       <div class="row form-group-title">
+                           <div class="col-xs-12">
+                               <h3>
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.contact_phone_numbers]
+                               </h3>
+                               <hr class="slim">
+                           </div>
+                       </div>
+                       <div class="row form-group-body" data-ng-if="contact._phones == null || contact._phones.length == 0">
+                           <!--no phone numbers-->
+                           <div class="col-xs-12">
+                               <span class="info">~[text:psx.html.teachers_powerteacherpro_students.demo.contact_no_data]</span>
+                           </div>
+                       </div>
+                       <div class="row form-group-body" data-ng-if="contact._phones != null && contact._phones.length > 0">
+                           <!--1 or many phone numbers-->
+                           <div class="col-xs-6 col-sm-3" data-ng-repeat="number in contact.phonesFiltered | limitTo : contact._phones.limit">
+                               <label id="{{'contact-phone-label-' + $parent.$index + '-' + $index}}"
+                                      for="{{'contact-phone-' + $parent.$index + '-' + $index}}">
+                                   {{number.phonetype ?  number.phonetype : '~[text:psx.html.teachers_powerteacherpro_students.demo.contact_phone_other]'}}
+                                   {{number.extras == 2 ? ' (' + '~[text:psx.html.teachers_powerteacherpro_students.demo.contact_phone_preferred]' + ' - ' + '~[text:psx.html.teachers_powerteacherpro_students.demo.contact_phone_texting_ok]' + ')' : ''}}
+                                   {{number.extras == 1 ? number.preferred ? '(' + '~[text:psx.html.teachers_powerteacherpro_students.demo.contact_phone_preferred]' + ')' : '(' + '~[text:psx.html.teachers_powerteacherpro_students.demo.contact_phone_texting_ok]' + ')' : ''}}
+                               </label>
+                               <input id="{{'contact-phone-' + $parent.$index + '-' + $index}}" type="text" class="form-control ps-readonly" readonly
+                                      value="{{number.extension ? number.phonenumber + ' x' + number.extension : number.phonenumber}}">
+                           </div>
+
+                           <!--If there are more phones then we are showing-->
+                           <div class="col-xs-6 col-sm-3" data-ng-if="contact._phones.length > contact._phones.limit">
+                               <label id="{{'contact-phones-more-label-' + $parent.$index }}" for="{{'contact-phones-more-' + $parent.$index + '-' + $index}}">
+                                   {{'psx.html.teachers_powerteacherpro_students.demo.contact_phone_more' | translate:{arg0: contact._phones.length - contact._phones.limit} }}
+                               </label>
+                               <a id="{{'contact-phones-more-' + $parent.$index + '-' + $index}}" class="block more"
+                                  data-ng-click="studentDemoCtrlData.newSize(contact._phones, contact._phones.length)">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.show_more]
+                               </a>
+                           </div>
+                           <!--If we are showing more than by default-->
+                           <div class="col-xs-6 col-sm-3" data-ng-if="studentDemoCtrlData.DEFAULTSTOP < contact._phones.limit && contact._phones.length > 4">
+                               <a id="{{'contact-phones-less-' + $parent.$index + '-' + $index}}" class="less"
+                                  data-ng-click="studentDemoCtrlData.newSize(contact._phones, studentDemoCtrlData.DEFAULTSTOP)">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.show_less]
+                               </a>
+                           </div>
+                       </div>
+                       <!--END Phone Numbers-->
+
+                       <!--Email-->
+                       <div class="row form-group-title">
+                           <div class="col-xs-12">
+                               <h3>
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.contact_email]
+                               </h3>
+                               <hr class="slim">
+                           </div>
+                       </div>
+                       <div class="row form-group-body" data-ng-if="contact._emails == null || contact._emails.length == 0">
+                           <!--no email-->
+                           <div class="col-xs-12">
+                               <span class="info">~[text:psx.html.teachers_powerteacherpro_students.demo.contact_no_data]</span>
+                           </div>
+                       </div>
+                       <div class="row form-group-body" data-ng-if="contact._emails != null && contact._emails.length > 0">
+                           <!--zero or many email addresses-->
+                           <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3" data-ng-repeat="email in contact._emails | limitTo : contact._emails.limit">
+                               <label id="{{'contact-email-label-' + $parent.$index + '-' + $index}}" for="{{'contact-email-' + $parent.$index + '-' + $index}}">
+                                   {{email.type ? email.type : '~[text:psx.html.teachers_powerteacherpro_students.demo.contact_email_other]'}}
+                                   {{email.primary? '(' + '~[text:psx.html.teachers_powerteacherpro_students.demo.contact_email_primary]' +')': ''}}
+                               </label>
+                               <input id="{{'contact-email-' + $parent.$index + '-' + $index}}" type="text" class="form-control ps-readonly" readonly
+                                      value="{{email.address}}">
+                           </div>
+                           <!--If there are more emails then we are showing-->
+                           <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3" data-ng-if="contact._emails.length > contact._emails.limit">
+                               <label id="{{'contact-email-more-label-' + $parent.$index }}" for="{{'contact-email-more-' + $parent.$index + '-' + $index}}">
+                                   {{'psx.html.teachers_powerteacherpro_students.demo.contact_email_more' | translate:{arg0: contact._emails.length - contact._emails.limit} }}
+                               </label>
+                               <a id="{{'contact-email-more-' + $parent.$index + '-' + $index}}" class="block more"
+                                  data-ng-click="studentDemoCtrlData.newSize(contact._emails, contact._emails.length)">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.show_more]
+                               </a>
+                           </div>
+                           <!--If we are showing more than by default-->
+                           <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3" data-ng-if="studentDemoCtrlData.DEFAULTSTOP < contact._emails.limit && contact._emails.length > 4">
+                               <a id="{{'contact-email-less-' + $parent.$index + '-' + $index}}" class="less"
+                                  data-ng-click="studentDemoCtrlData.newSize(contact._emails, studentDemoCtrlData.DEFAULTSTOP)">
+                                   ~[text:psx.html.teachers_powerteacherpro_students.demo.show_less]
+                               </a>
+                           </div>
+                       </div>
+
+                   </div>
+               </accordion-group>
+           </accordion>
+
+       </div>
+   </div>
+
+</div>
+</div>
+
+<SCRIPT LANGUAGE="JavaScript">
+
+function togglePassword() {
+   var toggle = document.getElementById("demo_student_pass");
+   toggle.style.display = toggle.style.display == "inline" ? "none" : "inline";
+ 
+   var toggleButton = document.getElementById("toggleButton");
+   toggleButton.innerHTML = toggleButton.innerHTML == "Show" ? "Hide" : "Show";
+}
+</script>

@@ -1,3 +1,9 @@
+<table class="hide">
+    <tr id="nextyearhr">
+        <td class="bold">Next Year Home Room</td>
+        <td><input type="text" name="[01]Sched_NextYearHomeRoom" value="" size="25"></td>
+    </tr>
+</table>
 <script>
     $j(document).ready(function(){
         if (document.documentElement.lang == 'en') {
@@ -13,5 +19,7 @@
             $j('tr:contains(Campus/Bâtiment actuel)').remove();
             $j('tr:contains(Suivre)').remove();
         }
+        $j('td:contains(~[text:psx.html.admin_students.modifydata.parttime_student_indicator])').closest('tr').before($j('#nextyearhr'));
+        $j('.hide').hide()
     });
 </script>
