@@ -5,6 +5,10 @@
 </tr>
 </table>
 
+<div>
+    <select name="[05]title" id="selectTitle">~[x:codesetoptions;codetype=Staff Title;includeblank;value=~([05]title)]</select>
+</div>
+
 <script>
   $j(document).ready(function() {
     $j('#selectGender').closest('tr').remove();
@@ -12,6 +16,8 @@
     $j('#defaultEthnicity').closest('tr').remove();
     $j('input[name="SaveRace"]').closest('tr').remove();
     $j('#primaryethnicity').closest('tr').remove();
+    $j('#title').after($j('#selectTitle'));
+    $j('#title').remove();
 
     if (document.documentElement.lang == 'en') {
       $j('tr:contains(StatePrId)').remove();
