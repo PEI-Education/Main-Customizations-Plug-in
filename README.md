@@ -64,12 +64,12 @@ Catch-all for PEI-specific customizations that don't fit into a larger project.
 - /admin/alerts/medicalalert.html - Inserted our allergies field.
 - /teachers/powerteacher-pro/students/demo.html
     <!--Add Student Password -->
-    <!-- Hide ethnicity
-    <!-- Hide Area/Neighborhood
+    <!-- Hide ethnicity-->
+    <!-- Hide Area/Neighborhood-->
 
 These files should be deleted with each upgrade, so that the latest stock file can load, and then we can re-apply changes, as necesary.
 
-## Version history
-
+## Change history
+- **1.1.2**: Fixed issue cause a second indigenous status and legal name field set to be created dynamically
 - **1.1.1**: Fixed Edit Staff Information page to work with dropdown title
 - **1.1.0**: Plugin reflects current state of production

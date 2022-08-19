@@ -1,30 +1,3 @@
-
-<table>
-  <tr id="indigenous">
-      <td class="bold">~[text:psx.htmlc.admin_students.newstudent.pei_custom.Indigenous_Status]</td>
-      <td>
-          <select name="[01]pei_indigenous"
-              id="selectIndigenous">~[x:codesetoptions;codetype=Indigenous;includeblank;value=~([01]Indigenous)]</select>
-      </td>
-  </tr>
-  <tr id="guardianship">
-      <td class="bold">~[text:psx.htmlc.admin_students.newstudent.pei_custom.guardianship]</td>
-      <td>
-          <select name="[Students]guardianship" id="selectGuardianship">~[x:codesetoptions;codetype=Guardianship;includeblank;value=~([Students]guardianship)]</select>
-      </td>
-  </tr>
-  <tr  id="legalName">
-      <td class="bold">~[text:psx.htmlc.admin_students.newstudent.pei_custom.student_legal_name] ~[text:psx.html.admin_students.newstudent.last_first_mi]</td>
-      <td>
-
-          <input type="text" name="[Students]PSCore_Legal_Last_Name" value="" size="25" maxlength="50" id="legallastName">,
-          <input type="text" name="[Students]PSCore_Legal_First_Name" value="" size="25" maxlength="50" id="legalfirstName">
-          <input type="text" name="[Students]PSCore_Legal_Middle_Name" value="" size="15" maxlength="30" id="legalmiddleName">
-      </td>
-  </tr>
-</table>
-
-
 <div>
   <span id="locate-pei-address" class="yui-button yui-push//-button">
     <span class="first-child">
@@ -34,11 +7,8 @@
 </div>
 <script>
   $j(document).ready(function() {
-    $j('#fieldDOB').closest('tr').before($j('#legalName'));
     $j('#fieldSSN').closest('tr').remove();
     $j("#validatePrimaryAddress").closest("td").append($j("#locate-pei-address"));
-    $j('#fieldStuNum').closest('tr').after($j('#guardianship'));
-    $j('#guardianship').after($j('#indigenous'));
     if (document.documentElement.lang == 'en') {
         $j('tr:contains(Track)').remove();
     } else if (document.documentElement.lang == 'fr') {

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<!-- This is actually a part of the PowerPack. Need to refactor the allergies and discipline alerts into a page fragment rather than modifying page directly -->
+<html>
+<head>
+    <title>Student Alerts</title>
+
+    ~[wc:commonscripts]
+    <script type="text/javascript" src="/ptds_scripts/js/alerts.js"></script>
+    <link href="/images/css/screen.css" rel="stylesheet" media="screen">
+    <link href="/images/css/print.css" rel="stylesheet" media="print">
+
+</head>
+<body>
+~[wc:admin_header_frame_css]
+<!-- breadcrumb start -->
+<a href="/admin/home.html" target="_top">Start Page</a> &gt; <a href="/admin/students/home.html?selectstudent=nosearch" target="_top">Student Selection</a> &gt; Student Alerts
+<!-- breadcrumb end -->
+~[wc:admin_navigation_frame_css]
+
+<div id="reportid">
+    ~[wc:title_student_begin_css]
+
+    <h1>Student Alerts</h1>
+
+    ~[wc:title_student_end_css]
+</div>
+
+
+<!-- start of content and bounding box -->
+<div class="box-round">
+    <!-- Saving All student Alert Data from one place Steve Fernandes-->
+    <form action="/admin/changesrecorded.white.html" method="POST" onsubmit="setDefaultValues();">
+        <table border="0" cellspacing="0" cellpadding="4">
+            <tr bgcolor="#f6f6f6">
+                <td colspan="4" class="bold">Medical Alert</td>
+            </tr>
+<!-- Add Allergies select -->            
+            <tr>
+                <td class="bold">Allergies</td>
+                <td>
+                    <select name="[Students]allergies"
+                        id="selectAllergies">~[x:codesetoptions;codetype=Allergies;includeblank;value=~([Students]allergies)]</select>
+                </td>
+            </tr>
+<!-- End of Add Allergies select -->
+            <tr bgcolor="#edf3fe">
+                <td class="bold">~[text:psx.html.admin_students.emergency.medical_alert_text]</td>
+                <td colspan="2"><textarea name="[01]Alert_Medical" rows="4" cols="40"></textarea></td>
+            </tr>
+            <tr>
+                <td class="bold">~[text:psx.html.admin_students.emergency.alert_expires,param:(date)]</td>
+                <td colspan="2"><input type="text" name="[01]Alert_MedicalExpires" value="" size="10"> ~[text:psx.html.admin_students.emergency._to_never_expire,param:~[i18shortdate:0/0/0]]
+                </td>
+            </tr>
+            </tr>
+            <tr bgcolor="#f6f6f6">
+                <td colspan="4" class="bold">~[text:psx.html.admin_students.misc.other_alert]</td>
+            </tr>
+            <tr bgcolor="#edf3fe">
+                <td class="bold">~[text:psx.html.admin_students.misc.other_alert_text]</td>
+                <td colspan="3"><textarea name="[01]Alert_Other" rows="4" cols="40"></textarea></td>
+            </tr>
+            <tr>
+                <td class="bold">~[text:psx.html.admin_students.misc.alert_expires,param:(Date)]</td>
+                <td colspan="3"><input type="text" name="[01]Alert_OtherExpires" value="" size="10"> ~[text:psx.html.admin_students.misc._to_never_expire,param:~[i18shortdate:0/0/0]]</td>
+            </tr>
+            <!-- Adding guardian alert to this list -->
+            <tr bgcolor="#f6f6f6">
+                <td colspan="2" class="bold">~[text:psx.html.admin_students.parentsguardian.guardian_alert]</td>
+            </tr>
+            <tr bgcolor="#edf3fe">
+                <td class="bold">~[text:psx.html.admin_students.parentsguardian.guardian_alert_text]</td>
+                <td colspan="2"><textarea name="[01]Alert_Guardian" rows="4" cols="40"></textarea></td>
+            </tr>
+            <tr>
+                <td class="bold">~[text:psx.html.admin_students.parentsguardian.alert_expires,param:(date)]</td>
+                <td colspan="2"><input type="text" class="psDateWidget" name="[01]Alert_GuardianExpires" value="" size="10"> ~[text:psx.html.admin_students.parentsguardian._to_never_expire,param:~[i18shortdate:0/0/0]]</td>
+            </tr>
+
+            <!-- End of changes Steve Fernandes -->
+<!--Add Discipline Alert -->
+            <tr bgcolor="#f6f6f6">
+                <td colspan="2" class="bold">~[text:psx.html.admin_students.disciplinealert.discipline_alert1]</td>
+            </tr>
+             <tr bgcolor="#edf3fe">
+                <td class="bold">~[text:psx.html.admin_students.disciplinealert.discipline_alert_text]</td>
+                <td colspan="2"><textarea name="[01]Alert_Discipline" rows="4" cols="40"></textarea></td>
+            </tr>
+            <tr>
+                <td class="bold">~[text:psx.html.admin_students.disciplinealert.alert_expires,param:(date)]</td>
+                <td colspan="2"><input type="text" name="[01]Alert_DisciplineExpires" value="" size="10">
+                    ~[text:psx.html.admin_students.disciplinealert._to_never_expire,param:~[i18shortdate:0/0/0]]
+                </td>
+            </tr>
+<!-- End of Add Discipline Alert -->
+            <!-- Check if admin user is at district level -->
+
+            ~[if#school.~(curschoolid)=0]
+            <!-- use district preference -->
+
+
+            ~[if.~[pref:ELL_ALERT]=1]
+            <tr bgcolor="#f6f6f6">
+                <td colspan="4" class="bold">ELL Alert</td>
+            </tr>
+
+            <tr>
+                <td class="bold">ELL Alert Text</td>
+                <td colspan="3"><textarea name="[Students.U_CUSTOM_ALERTS]Alert_ELL" rows="4" cols="40"></textarea></td>
+            </tr>
+            <tr>
+                <td class="bold">Alert Expires (Date)</td>
+                <td colspan="3"><input type="text" name="[Students.U_CUSTOM_ALERTS]Alert_ELLExpires" id="ell-date" value="" size="10" class="psDateWidget"> ~[text:psx.html.admin_students.misc._to_never_expire,param:~[i18shortdate:0/0/0]]</td>
+            </tr>
+            [/if]
+            ~[if.~[pref:504_ALERT]=1]
+            <tr bgcolor="#f6f6f6">
+                <td colspan="4" class="bold">504 Alert</td>
+            </tr>
+
+            <tr>
+                <td class="bold">504 Alert Text</td>
+                <td colspan="3"><textarea name="[Students.U_CUSTOM_ALERTS]Alert_504" rows="4" cols="40"></textarea></td>
+            </tr>
+            <tr>
+                <td class="bold">Alert Expires (Date)</td>
+                <td colspan="3"><input type="text" name="[Students.U_CUSTOM_ALERTS]Alert_504Expires" id="504-date" value="" size="10" class="psDateWidget"> ~[text:psx.html.admin_students.misc._to_never_expire,param:~[i18shortdate:0/0/0]]</td>
+            </tr>
+            [/if]
+            ~[if.~[pref:IEP_ALERT]=1]
+            <tr bgcolor="#f6f6f6">
+                <td colspan="4" class="bold">IEP Alert</td>
+            </tr>
+            <tr>
+                <td class="bold">IEP Alert Text</td>
+                <td colspan="3"><textarea name="[Students.U_CUSTOM_ALERTS]Alert_IEP" rows="4" cols="40"></textarea></td>
+            </tr>
+            <tr>
+                <td class="bold">Alert Expires (Date)</td>
+                <td colspan="3"><input type="text" name="[Students.U_CUSTOM_ALERTS]Alert_IEPExpires" id="IEP-date" value="" size="10" class="psDateWidget"> ~[text:psx.html.admin_students.misc._to_never_expire,param:~[i18shortdate:0/0/0]]</td>
+            </tr>
+            [/if]
+            ~[if.~[pref:SPED_ALERT]=1]
+            <tr bgcolor="#f6f6f6">
+                <td colspan="4" class="bold">Special Education Alert</td>
+            </tr>
+            <tr>
+                <td class="bold">SPED Alert Text</td>
+                <td colspan="3"><textarea name="[Students.U_CUSTOM_ALERTS]Alert_SPED" rows="4" cols="40"></textarea></td>
+            </tr>
+            <tr>
+                <td class="bold">Alert Expires (Date)</td>
+                <td colspan="3"><input type="text" name="[Students.U_CUSTOM_ALERTS]Alert_SPEDExpires" id="sped-date" value="" size="10" class="psDateWidget"> ~[text:psx.html.admin_students.misc._to_never_expire,param:~[i18shortdate:0/0/0]]</td>
+            </tr>
+            [/if]
+            ~[if.~[pref:CUST_ALERT]=1]
+            <tr bgcolor="#f6f6f6">
+                <td colspan="4" class="bold">~[displaypref:alert_cust_name] Alert</td>
+            </tr>
+            <tr>
+                <td class="bold">~[displaypref:alert_cust_name] Alert Text</td>
+                <td colspan="3"><textarea name="[Students.U_CUSTOM_ALERTS]Alert_CUST" rows="4" cols="40"></textarea></td>
+            </tr>
+            <tr>
+                <td class="bold">Alert Expires (Date)</td>
+                <td colspan="3"><input type="text" name="[Students.U_CUSTOM_ALERTS]Alert_CUSTExpires" id="cust-date" value="" size="10" class="psDateWidget"> ~[text:psx.html.admin_students.misc._to_never_expire,param:~[i18shortdate:0/0/0]]</td>
+            </tr>
+            [/if]
+
+            [else#school]
+            <!-- use school Level Preference -->
+
+            ~[if.prefschool.ELL_ALERT=1]
+            <tr bgcolor="#f6f6f6">
+                <td colspan="4" class="bold">ELL Alert</td>
+            </tr>
+
+            <tr>
+                <td class="bold">ELL Alert Text</td>
+                <td colspan="3"><textarea name="[Students.U_CUSTOM_ALERTS]Alert_ELL" rows="4" cols="40"></textarea></td>
+            </tr>
+            <tr>
+                <td class="bold">Alert Expires (Date)</td>
+                <td colspan="3"><input type="text" name="[Students.U_CUSTOM_ALERTS]Alert_ELLExpires" id="ell-date" value="" size="10" class="psDateWidget"> ~[text:psx.html.admin_students.misc._to_never_expire,param:~[i18shortdate:0/0/0]]</td>
+            </tr>
+            [/if]
+            ~[if.prefschool.504_ALERT=1]
+            <tr bgcolor="#f6f6f6">
+                <td colspan="4" class="bold">504 Alert</td>
+            </tr>
+
+            <tr>
+                <td class="bold">504 Alert Text</td>
+                <td colspan="3"><textarea name="[Students.U_CUSTOM_ALERTS]Alert_504" rows="4" cols="40"></textarea></td>
+            </tr>
+            <tr>
+                <td class="bold">Alert Expires (Date)</td>
+                <td colspan="3"><input type="text" name="[Students.U_CUSTOM_ALERTS]Alert_504Expires" id="504-date" value="" size="10" class="psDateWidget"> ~[text:psx.html.admin_students.misc._to_never_expire,param:~[i18shortdate:0/0/0]]</td>
+            </tr>
+            [/if]
+            ~[if.prefschool.IEP_ALERT=1]
+            <tr bgcolor="#f6f6f6">
+                <td colspan="4" class="bold">IEP Alert</td>
+            </tr>
+            <tr>
+                <td class="bold">IEP Alert Text</td>
+                <td colspan="3"><textarea name="[Students.U_CUSTOM_ALERTS]Alert_IEP" rows="4" cols="40"></textarea></td>
+            </tr>
+            <tr>
+                <td class="bold">Alert Expires (Date)</td>
+                <td colspan="3"><input type="text" name="[Students.U_CUSTOM_ALERTS]Alert_IEPExpires" id="IEP-date" value="" size="10" class="psDateWidget"> ~[text:psx.html.admin_students.misc._to_never_expire,param:~[i18shortdate:0/0/0]]</td>
+            </tr>
+            [/if]
+            ~[if.prefschool.SPED_ALERT=1]
+            <tr bgcolor="#f6f6f6">
+                <td colspan="4" class="bold">Special Education Alert</td>
+            </tr>
+            <tr>
+                <td class="bold">SPED Alert Text</td>
+                <td colspan="3"><textarea name="[Students.U_CUSTOM_ALERTS]Alert_SPED" rows="4" cols="40"></textarea></td>
+            </tr>
+            <tr>
+                <td class="bold">Alert Expires (Date)</td>
+                <td colspan="3"><input type="text" name="[Students.U_CUSTOM_ALERTS]Alert_SPEDExpires" id="sped-date" value="" size="10" class="psDateWidget"> ~[text:psx.html.admin_students.misc._to_never_expire,param:~[i18shortdate:0/0/0]]</td>
+            </tr>
+
+            [/if]
+            ~[if.~[prefschool:CUST_ALERT]=1]
+            <tr bgcolor="#f6f6f6">
+                <td colspan="4" class="bold">~[displaypref:alert_cust_name] Alert</td>
+            </tr>
+            <tr>
+                <td class="bold">~[displaypref:alert_cust_name] Alert Text</td>
+                <td colspan="3"><textarea name="[Students.U_CUSTOM_ALERTS]Alert_CUST" rows="4" cols="40"></textarea></td>
+            </tr>
+            <tr>
+                <td class="bold">Alert Expires (Date)</td>
+                <td colspan="3"><input type="text" name="[Students.U_CUSTOM_ALERTS]Alert_CUSTExpires" id="cust-date" value="" size="10" class="psDateWidget"> ~[text:psx.html.admin_students.misc._to_never_expire,param:~[i18shortdate:0/0/0]]</td>
+            </tr>
+            [/if]
+
+            [/if#school]
+
+            <tr>
+                <td colspan="4">
+                    <div class="button-row"><input type="hidden" name="frn" value="~(studentfrn)"><input type="hidden" name="ac" value="prim">~[submitbutton]</div>
+                </td>
+            </tr>
+            </table>
+    </form>
+    <!-- End Of Changes Steve Fernandes -->
+</div>
+
+
+~[wc:admin_footer_frame_css]
+~[wc:studentalertsplugindata]</body>
+</html>

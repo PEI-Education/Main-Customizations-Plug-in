@@ -6,8 +6,8 @@
     <tr id="indigenous">
       <td class="bold">~[text:psx.htmlc.admin_students.general_demographics.pei_custom.Indigenous_Status]</td>
       <td>
-          <select name="[01]pei_indigenous"
-              id="selectIndigenous">~[x:codesetoptions;codetype=Indigenous;includeblank;value=~([01]Indigenous)]</select>
+          <select name="[Students.U_Students_Extension]pei_indigenous"
+              id="selectIndigenous">~[x:codesetoptions;codetype=Indigenous;includeblank;value=~([Students.U_Students_Extension]Indigenous)]</select>
       </td>
   </tr>
     <tr id="legalName">
