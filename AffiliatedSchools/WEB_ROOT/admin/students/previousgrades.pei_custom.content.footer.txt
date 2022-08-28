@@ -1,0 +1,7 @@
+<script>
+(function () {
+
+   $j('.button-row').prepend('Total Credits: ~(*credit_hours)');
+
+}());
+</script>

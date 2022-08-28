@@ -1,0 +1,36 @@
+<table>
+<tr id="staffMobile" class="oddRow">
+	<td class="bold">~[text:psx.htmlc.admin_faculty.edit.pei_custom.mobile_phone]</td>
+	<td>  <input type="text" name="[Users]mobile_phone" value="" size="25" maxlength="50">,</td>
+</tr>
+</table>
+
+<div>
+    <select name="[05]title" id="selectTitle">~[x:codesetoptions;codetype=Staff Title;includeblank;value=~([05]title)]</select>
+</div>
+
+<script>
+  $j(document).ready(function() {
+    $j('#selectGender').closest('tr').remove();
+    $j('.headerrow').remove();
+    $j('#defaultEthnicity').closest('tr').remove();
+    $j('input[name="SaveRace"]').closest('tr').remove();
+    $j('#primaryethnicity').closest('tr').remove();
+    $j('#title').after($j('#selectTitle'));
+    $j('#title').remove();
+
+    if (document.documentElement.lang == 'en') {
+      $j('tr:contains(StatePrId)').remove();
+      $j('tr:contains(Lunch ID)').remove();
+      $j('tr:contains(SSN)').remove();
+      $j('tr:contains(DOB)').remove();
+      $j('tr:contains(Home Phone)').before($j('#staffMobile'));
+    } else if (document.documentElement.lang == 'fr') {
+      $j('tr:contains(StatePrId)').remove();
+      $j('tr:contains(ID du repas)').remove();
+      $j('tr:contains(SSN)').remove();
+      $j('tr:contains(DDN)').remove();
+      $j('tr:contains(téléphone résidentiel)').before($j('#staffMobile'));
+    }
+  });
+</script>

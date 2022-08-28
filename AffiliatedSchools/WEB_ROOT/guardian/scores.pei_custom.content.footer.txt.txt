@@ -1,0 +1,7 @@
+<script>
+    $j(document).ready(function() {
+        $j("div.comment:first").remove();
+        $j("p:contains('~[text:psx.html.guardian.scores.teacher_comments]')").remove();
+    });
+    
+</script>

@@ -1,0 +1,50 @@
+<table>
+
+         <tr id="VP2">
+            <th colspan="2">~[text:psx.html.admin_schools.edit.assistantviceprincipal] </th>
+          </tr>
+          <tr class="~[evenoddrow]" id="VP2name">
+            <td class="bold"><label for="asstprincipal.name">~[text:psx.html.admin_schools.edit.assistantviceprincipals_name]</label></td>
+            <td><input type="text" name="[Schools]AsstPrincipal2" id="asstprincipal2.name" value="" size="37"/></td>
+          </tr >
+          <tr class="~[evenoddrow]" id="VP2phone">
+            <td class="bold"><label for="asstprincipal.phone">~[text:psx.html.admin_schools.edit.assistantviceprincipals_phone]</label></td>
+            <td><input type="text" name="[Schools]AsstPrincipalPhone2" id="asstprincipal.phone2" value="" size="17" /></td>
+          </tr>
+          <tr class="~[evenoddrow]" id="VP2email">
+            <td class="bold"><label for="asstprincipal.email">~[text:psx.html.admin_schools.edit.assistantviceprincipals_email]</label></td>
+            <td><input type="text" name="[Schools]AsstPrincipalEmail2" value="" size="37"/></td>
+          </tr><tr id="VP3">
+            <th colspan="2">~[text:psx.html.admin_schools.edit.assistantviceprincipal]  </th>
+          </tr>
+          <tr class="~[evenoddrow]" id="VP3name">
+            <td class="bold"><label for="asstprincipal.name">~[text:psx.html.admin_schools.edit.assistantviceprincipals_name]</label></td>
+            <td><input type="text" name="[Schools]AsstPrincipal3" id="asstprincipal3.name" value="" size="37"/></td>
+          </tr>
+          <tr class="~[evenoddrow]" id="VP3phone">
+            <td class="bold"><label for="asstprincipal.phone">~[text:psx.html.admin_schools.edit.assistantviceprincipals_phone]</label></td>
+            <td><input type="text" name="[Schools]AsstPrincipalPhone3" id="asstprincipal.phone3" value="" size="17" /></td>
+          </tr>
+          <tr class="~[evenoddrow]" id="VP3email">
+            <td class="bold"><label for="asstprincipal.email">~[text:psx.html.admin_schools.edit.assistantviceprincipals_email]</label></td>
+            <td><input type="text" name="[39]AsstPrincipalEmail3" id = "asstprincipal.email3" value="" size="37"/></td>
+          </tr>
+          <tr class="~[evenoddrow]">
+            <td class="bold"><label for="SchoolURL">School Website</label></td>
+            <td><input type="text" name="[Schools]SchoolURL" id = "SchoolURL" value="" size="37"/></td>
+          </tr>
+</table>
+
+<script>
+$j(function() {
+    $j('tr:contains(~[text:psx.html.admin_schools.edit.attendance_secretary])').before($j('#VP3'));
+    $j('#VP3').before($j('#VP2'));
+     $j('#VP2').after($j('#VP2name'));
+     $j('#VP2name').after($j('#VP2phone'));
+     $j('#VP2phone').after($j('#VP2email'));
+     $j('#VP3').after($j('#VP3name'));
+     $j('#VP3name').after($j('#VP3phone'));
+     $j('#VP3phone').after($j('#VP3email'));
+    $j('tr:contains(School FAX)').after($j('tr:contains(Website)'));
+});
+</script>

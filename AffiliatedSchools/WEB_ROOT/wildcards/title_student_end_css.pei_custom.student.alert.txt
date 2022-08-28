@@ -1,0 +1,33 @@
+~[tlist_sql;select case when exists 
+(
+select 
+	1
+from 
+	students s
+where 
+	s.dob  < (current_date - 6575)
+	and
+	s.id = ~(curstudid)
+)
+then 1 else 0 end result
+from dual]
+<input type="hidden" id="result18" value="~(result)">
+[/tlist_sql]
+
+<script>
+/* Adds indicator to student header when student is 18+ or Independent and 18+ */
+
+    $j(function(){
+        let ageNotice = '';
+        let result = $j('#result18').val();
+        if (result == 1) { 
+            ageNotice = '&nbsp; &nbsp; 18+'; 
+        }
+        
+        if (result == 1 && "~([Students]guardianship)" === "I") {
+            ageNotice = '&nbsp; &nbsp; <strong style="color: blue;">Independent 18+</strong>';
+        }
+        
+        $j('#student_detail_header').append('&nbsp; &nbsp; ~([students]home_room) &nbsp; &nbsp; ~([Students.U_Students_Extension]pei_studentservicesteam)'  + ageNotice);
+    });
+</script>

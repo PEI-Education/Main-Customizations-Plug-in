@@ -1,0 +1,20 @@
+<div>
+    <select name="[Students]allergies" id="selectAllergies">~[x:codesetoptions;codetype=Allergies;includeblank;value=~([Students]allergies)]</select>
+</div>
+
+<script>
+$j(function() {
+   $j('input[name*="allergies"]').after($j('#selectAllergies'));
+   $j('input[name*="allergies"]').remove();
+   $j('tr:contains(Contact)').remove();
+
+   if (document.documentElement.lang == 'en') {
+     $j('tr:contains(Phone)').remove()
+     $j('tr:contains(Immunization)').remove();
+   } else if (document.documentElement.lang == "fr") {
+     $j('tr:contains(Téléphone)').remove();
+     $j('tr:contains(Immunisation)').remove();
+   }
+
+});
+</script>

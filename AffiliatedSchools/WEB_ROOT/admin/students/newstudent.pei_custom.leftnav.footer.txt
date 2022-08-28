@@ -1,0 +1,18 @@
+<div>
+  <span id="locate-pei-address" class="yui-button yui-push//-button">
+    <span class="first-child">
+        <a href="https://www.arcgis.com/apps/webappviewer/index.html?id=3db6ec75a9a5400fa56358088e1a4800&extent=-7162735.8801%2C5786025.1196%2C-6930367.3141%2C5918719.8007%2C102100" target="_blank">~[text:psx.htmlc.admin_students.new_student.pei_custom.locate_a_pei_address]</a>
+    </span>
+  </span>
+</div>
+<script>
+  $j(document).ready(function() {
+    $j('#fieldSSN').closest('tr').remove();
+    $j("#validatePrimaryAddress").closest("td").append($j("#locate-pei-address"));
+    if (document.documentElement.lang == 'en') {
+        $j('tr:contains(Track)').remove();
+    } else if (document.documentElement.lang == 'fr') {
+        $j('tr:contains(Suivre)').remove();
+    }
+  });
+</script>
