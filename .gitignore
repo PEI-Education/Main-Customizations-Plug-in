@@ -1,2 +1,3 @@
 _Versions/
-_ZIPs/                                                                                                                                     *.zip                                                                        
+_ZIPs/
+*.zip                                                                        
