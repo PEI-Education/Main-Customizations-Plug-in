@@ -28,6 +28,8 @@ from dual]
             ageNotice = '&nbsp; &nbsp; <strong style="color: blue;">Independent 18+</strong>';
         }
         
-        $j('#student_detail_header').append('&nbsp; &nbsp; ~([students]home_room) &nbsp; &nbsp; ~([Students.U_Students_Extension]pei_studentservicesteam)'  + ageNotice);
+        let bus = '~[if#bus.~(curschoolid)<500]&nbsp; &nbsp; <a href="https://psbbusing.princeedwardisland.ca/Student/TransportDetails?Identifier=~(student_number)" target="_blank" style="font-size: 20px">🚌</a>[/if#bus]'
+        
+        $j('#student_detail_header').append(bus + '&nbsp; &nbsp; &nbsp; ~([students]home_room) &nbsp; &nbsp; ~([Students.U_Students_Extension]pei_studentservicesteam)' + ageNotice);
     });
 </script>
