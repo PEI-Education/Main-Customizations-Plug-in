@@ -1,0 +1,7 @@
+
+<script>
+    $j(function() {
+        $j('#autosendBalanceAlert').attr('disabled',true);
+        $j('#additionalEmailAddresses').attr('disabled',true);
+    }); 
+</script>   

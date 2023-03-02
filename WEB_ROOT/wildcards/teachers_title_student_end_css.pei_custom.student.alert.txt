@@ -1,0 +1,67 @@
+~[tlist_sql;select case when exists 
+(
+select 
+	1
+from 
+	students s
+where 
+	s.dob  < (current_date - 6575)
+	and
+	s.id = ~(curstudid)
+)
+then 1 else 0 end result
+from dual]
+<input type="hidden" id="result18" value="~(result)">
+[/tlist_sql]
+
+<script>
+/* Adds indicator to student header when student is 18+ or Independent and 18+ */
+
+    $j(function(){
+        let ageNotice = '';
+        let result = $j('#result18').val();
+        if (result == 1) { 
+            ageNotice = '&nbsp; &nbsp; 18+'; 
+        }
+        
+        if (result == 1 && "~([Students]guardianship)" === "I") {
+            ageNotice = '&nbsp; &nbsp; <strong style="color: blue;">~[text:psx.htmlc.wildcards.title_student_end.pei_custom.independent]</strong>';
+        }
+        
+        $j('#student_detail_header').append('&nbsp; &nbsp; ~([students]home_room) &nbsp; &nbsp; ~([Students.U_Students_Extension]pei_studentservicesteam)' + ageNotice);
+    });
+    
+    
+    // Mutation Observer that waits for the PSSP Alert to be present, and once it is, modifies its attributes and properties to remove mention of Special Education (Student services instead), and to redirect anyone who clicks to a special version of the alert.
+    function waitForElm(selector) {
+        return new Promise(resolve => {
+            if (document.querySelector(selector)) {
+                resolve(document.querySelector(selector));
+            }
+            else {
+                const observer = new MutationObserver(mutations => {
+                    if (document.querySelector(selector)) {
+                        resolve(document.querySelector(selector));
+                        observer.disconnect();
+                    }
+                });
+        
+                observer.observe(document.body, {
+                    childList: true,
+                    subtree: true
+                });
+            }
+        });
+    }
+    
+    waitForElm('#spAlert').then(elm => {
+        elm.title = "~[text";
+    });
+    
+    waitForElm('#pssp_alert_sped').then(elm => {
+        elm.title = "~[text:psx.htmlc.wildcards.title_student_end.pei_custom.student_services_alert]";
+        let url = elm.href.split('?');
+        let newUrl = `https://pei.powerschool.com/teachers/alerts/student_services_alert_pei.html?${url[1]}`;
+        elm.href=newUrl;
+    });
+</script>

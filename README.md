@@ -8,6 +8,10 @@ Catch-all for PEI-specific customizations that don't fit into a larger project.
 
 - **Enroll Student** - hides SSN and track, adds validate PEI Address button. DOES NOT add any fields that collect additional info - this has weird implications and should be avoided. Can lead to bad, bad things. We should generally avoid modifying this page.
 
+#### Alerts
+
+- **Alerts** - Add a PEI version of the PSSP Alert. A mutation observer in the student header wildcards modifies the real PSSP Alert to point to this page instead.
+
 #### Contacts
 
 - **Edit** - Remove gender field.
@@ -28,7 +32,7 @@ Catch-all for PEI-specific customizations that don't fit into a larger project.
 #### Student Pages
 
 - **Addressess** - Add a Validate a PEI Address button.
-- **Demographics** - Add legal name, indigenous self-identification, guardianship; removes or makes readonly a bunch of fields.
+- **Demographics** - Add legal name, indigenous self-identification, guardianship; removes or makes readonly a bunch of fields. Added the "Use legal name on report cards" option, and an listener to make the legal name required if that option is true.
 - **Edit Transfer** - From Transfer Info screen, when you try to edit the current or previous enrollment record, removes Track.
 - **Emergency/Medical** - Removes existing allergy field/adds our custom allergy field. Removes emergency contact (use contacts instead) and immunization fields.
 - **Historical Grades** - Add credit totals for easier view.
@@ -41,6 +45,7 @@ Catch-all for PEI-specific customizations that don't fit into a larger project.
 ### Public Portal
 
 - **Scores and Teacher Comments pages** - All changes here so far are with the aim of removing unwanted access to report card comments via the portal.
+-  **Email notifications** - Made balance alert and additional email-addreses disabled.
 
 ### Power Teacher
 
@@ -53,7 +58,8 @@ Catch-all for PEI-specific customizations that don't fit into a larger project.
 
 ### Wildcards
 
-- **title_student_end_css.pei_custom.student.alert.txt** - Adds 18+/Independent 18+ indicator to student header.
+- **teachers_title_student_end_css.pei_custom.student.alert.txt** - Adds 18+/Independent 18+ indicator, homeroom, student services pod to student header + mutation observer for Student Services Alert (teacher portal).
+- **title_student_end_css.pei_custom.student.alert.txt** - Adds 18+/Independent 18+ indicator, homeroom, student services pod to student header + mutation observer for Student Services Alert (admin portal).
 - **guardian_header.pei_custom.leftnav.footer.txt** - Removes the teacher comments button from the public portal.
 - **teachers_nav_css.pei_custom.leftnav.footer.txt** - Removes link to meal counts from navigation on Power Teacher home page.
 
@@ -69,7 +75,11 @@ Catch-all for PEI-specific customizations that don't fit into a larger project.
 
 These files should be deleted with each upgrade, so that the latest stock file can load, and then we can re-apply changes, as necesary.
 
+## Technical Debt
+- Fix admin/schools/edit so that inputs point to u_def_ext_schools and not the dyn table. Migrate data from dyn to ext.
+
 ## Change history
+- **1.2**: Fixed placement of Validate PEI Address button to uncouple it from the presence of a Google Maps validator; added modified Special Programs alert; added lines to translation files (among other edits); added access request to plugin.xml for CSP - installed in production on March 3, 2023 
 - **1.1.2**: Fixed issue cause a second indigenous status and legal name field set to be created dynamically
 - **1.1.1**: Fixed Edit Staff Information page to work with dropdown title
-- **1.1.0**: Plugin reflects current state of production
+- **1.1.0**: Plugin reflects current state of production (September 2022)
