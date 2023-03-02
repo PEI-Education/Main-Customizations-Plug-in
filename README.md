@@ -20,7 +20,7 @@ Catch-all for PEI-specific customizations that don't fit into a larger project.
 
 - **School Info** - Add additional VP fields and school URL
 
-### PowerScheduler
+#### PowerScheduler
 
 - **Student Prefs** - Add Next Year Home Room
 
