@@ -1,0 +1,23 @@
+<form action="/~[self.page]?frn=~(studentfrn)&changesSaved=true" method="POST">
+    <div id="esap" class="box-round" style="display: none;">
+    
+        <h2>ESAP Pathway Selection</h2>
+        <div style="padding: 4px; margin: 10px">
+            Pathway selection:  <select name="[Students.U_Students_Extension]PEI_ESAP" id="esapPathway">~[x:codesetoptions;codetype=ESAP;includeblank;value=~([Students.U_Students_Extension]PEI_ESAP)]</select>
+        </div>
+        <div class="button-row">
+          <input type="hidden" name="frn" value="~(studentfrn)">
+          <input type="hidden" name="ac" value="prim">
+          ~[submitbutton]
+        </div>
+    </div>
+</form>
+<script>
+    $j(function() {
+        const isEsap = ~[tlist_sql; select distinct case when gen.name = 'Essential Skills Achievement Pathway' and (esap.exit_date >= SYSDATE OR esap.exitcode = 'GRAD') then 1 else 2 end from students s left join SPEnrollments esap on s.id = esap.studentid left join GEN on GEN.id = esap.programid where s.id = ~(curstudid);]~(answer;l)[/tlist_sql]
+        console.log(isEsap);
+        if (isEsap === 1) {
+            $j('#esap').css('display','block');
+        }
+    });
+</script>

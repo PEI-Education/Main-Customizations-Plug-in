@@ -1,3 +1,5 @@
+<script type="text/javascript" src="/scripts/psQuery/psQuery.js"></script>
+
 <table>
   <tr class="headerrow" id="generalInfo">
     <td colspan="2" class="bold">~[text:psx.htmlc.admin_students.general_demographics.pei_custom.general_info]
@@ -10,10 +12,10 @@
               id="selectIndigenous">~[x:codesetoptions;codetype=Indigenous;includeblank;value=~([Students.U_Students_Extension]Indigenous)]</select>
       </td>
   </tr>
-    <tr id="legalName">
+  <tr id="legalName">
       <td class="bold">~[text:psx.htmlc.admin_students.general_demographics.pei_custom.student_legal_name] ~[text:psx.html.admin_students.newstudent.last_first_mi]</td>
       <td>
-          <input type="text" class="psSpecialValidate useLegal" data-specialfunction="conditionalLegalRequired" name="[Students.StudentCoreFields]PSCore_Legal_Last_Name" value="" size="25" maxlength="50" id="legallastName">,
+          <input type="text" name="[Students.StudentCoreFields]PSCore_Legal_Last_Name" value="" size="25" maxlength="50" id="legallastName">,
           <input type="text" class="psSpecialValidate useLegal" data-specialfunction="conditionalLegalRequired" name="[Students.StudentCoreFields]PSCore_Legal_First_Name" value="" size="25" maxlength="50" id="legalfirstName">
           <input type="text" name="[Students.StudentCoreFields]PSCore_Legal_Middle_Name" value="" size="15" maxlength="30" id="legalmiddleName">
           <input type="checkbox" name="[Students.U_Students_Extension]pei_uselegal" value="1" id="useLegal" class="psSpecialValidate" data-specialfunction="updateListenersLegal">
@@ -36,6 +38,46 @@
 </div>
 
 <script>
+
+    document.getElementById('btnSubmit').addEventListener('click', function(e) {
+        const stuDcid = ~(studentrn);
+        const userId = ~[x:userid];
+        const dateToday = '~[date]';
+        const schoolid = ~(studentcurrschoolid);
+        const oldStreet = document.getElementById('orig_pstreet').value;
+        const oldCity = document.getElementById('orig_pcity').value;
+        const oldZip = document.getElementById('orig_pzip').value;
+        const oldGuard = document.getElementById('selectGuardianship').value;
+
+        const newGuard = document.getElementById('selectGuardianship').value;
+        const newApt = document.getElementById('papt').value;
+        let tempNewStreet = document.getElementById('pstreet').value;
+        const newStreet = newApt.length > 0 ? tempNewStreet + ', ' + newApt : tempNewStreet;
+        const newCity = document.getElementById('pcity').value;
+        const newZip = document.getElementById('pzip').value;
+
+        let sumOfChanges = 0;
+        if (oldGuard !== newGuard) {
+            sumOfChanges++;
+        }
+        if (oldStreet !== newStreet) {
+            sumOfChanges++;
+        }
+        if (oldCity !== newCity) {
+            sumOfChanges++;
+        }
+        if (oldZip !== newZip) {
+            sumOfChanges++;
+        }
+        
+        if (sumOfChanges > 0) {
+            $psq('u_address_history').insertChild({table: 'students', id: stuDcid}, {who_stored: userId, date_stored: dateToday, schoolid: schoolid, guardianship: oldGuard, street: oldStreet, city: oldCity, zip: oldZip}, function(retId) {
+                console.log('Change in address/guardianship logged')
+            })
+        } 
+        
+    }, false);
+    
     $j(document).ready(function() {
         $j('#defaultEthnicity').closest("tr").remove();
         $j('#hiddenFieldSaveRace').closest("tr").remove();
@@ -51,7 +93,7 @@
         $j('tr:contains(Ethnicit)').remove();
         $j('#fieldHomePhone').closest('tr').before($j('#generalInfo'));
         $j('#current_father').prop('readonly',true);
-        $j('#fieldFatherDayPhone').prop('readonly',true);c
+        $j('#fieldFatherDayPhone').prop('readonly',true);
         $j('#fieldFatherEmployer').prop('readonly',true);
         $j('#fieldFatherHomePhone').prop('readonly',true);
         $j('#current_mother').prop('readonly',true);
@@ -72,4 +114,5 @@ function updateListenersLegal(jQueryElement) {
    });
    return "";
 }
+
 </script>

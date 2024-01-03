@@ -1,44 +1,37 @@
 <table id="hiddenTable">
-    <tr id="studentloginrow">
-        <td><strong>~[text:psx.htmlc.teachers.studentpages.demo.pei_custom.student_login]</strong></td>
-        <td>~([Students.U_Students_Extension]pei_studentlogin)</td>
+  <tr id="studentloginrow">
+    <td><strong>~[text:psx.htmlc.teachers.studentpages.demo.pei_custom.student_login]</strong></td>
+    <td>~([Students.U_Students_Extension]pei_studentlogin)</td>
 	</tr>
 	<tr id="studentpasswordrow">
-        <td>
-            <strong>~[text:psx.htmlc.teachers.studentpages.demo.pei_custom.student_password]</strong>
+    <td>
+      <strong>~[text:psx.htmlc.teachers.studentpages.demo.pei_custom.student_password]</strong>
+      </td>
+    <td>
+      <div id="studentpassword" style="display:none">~([Students.U_Students_Extension]pei_password)
+      </div>
+    <button id="toggleButton" onClick="togglePassword()">~[text:psx.htmlc.teachers.studentpages.demo.pei_custom.show_password]</button>
+    </td>
+    <td>
 
-            </td>
-
-        <td>
-            <div id="studentpassword" style="display:none">~([Students.U_Students_Extension]pei_password)
-            </div>
-        <button id="toggleButton" onClick="togglePassword()">~[text:psx.htmlc.teachers.studentpages.demo.pei_custom.show_password]</button>
-        </td>
-        <td>
-
-        </td>
-
-
+    </td>
 	</tr>
 </table>
 
 <script>
 $j(document).ready(function() {
     // Remove Ethnicity
-    $j('tr:contains(Ethnicit)').remove();
+  $j('tr:contains(Ethnicit)').remove();
 
-
-if (document.documentElement.lang == 'en') {
-    // Remove Area/Neighbourhood
-    $j('tr:contains(Area)').remove();
-    // Remove Student ID
-    $j('tr:contains(Student ID)').remove();
-} else if (document.documentElement.lang == 'fr') {
-    $j('tr:contains(Zone)').remove();
-    $j('tr:contains(Carte d)').remove();
-
-
-}
+  if (document.documentElement.lang == 'en') {
+      // Remove Area/Neighbourhood
+      $j('tr:contains(Area)').remove();
+      // Remove Student ID
+      $j('tr:contains(Student ID)').remove();
+  } else if (document.documentElement.lang == 'fr') {
+      $j('tr:contains(Zone)').remove();
+      $j('tr:contains(Carte d)').remove();
+  }
 
 //Add student login and password
     $j('table tr').eq(0).after($j('#studentloginrow'));

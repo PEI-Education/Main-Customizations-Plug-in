@@ -1,24 +1,17 @@
 <table class="hide">
     <tr id="nextyearhr">
-        <td class="bold">Next Year Home Room</td>
+        <td class="bold">~[text:psx.html.admin_students.modifydata.next_year_home_room]</td>
         <td><input type="text" name="[01]Sched_NextYearHomeRoom" value="" size="25"></td>
     </tr>
 </table>
 <script>
     $j(document).ready(function(){
-        if (document.documentElement.lang == 'en') {
-            $j('tr:contains(Lunch ID)').remove();
-            $j('tr:contains(Current Team)').remove();
-            $j('tr:contains(Current House)').remove();
-            $j('tr:contains(Current Campus)').remove();
-            $j('tr:contains(Track)').remove();
-        } else if (document.documentElement.lang == 'fr') {
-            $j('tr:contains(Identification du déjeuner)').remove();
-            $j('tr:contains(Équipe actuelle)').remove();
-            $j('tr:contains(Résidence actuelle)').remove();
-            $j('tr:contains(Campus/Bâtiment actuel)').remove();
-            $j('tr:contains(Suivre)').remove();
-        }
+        $j('tr:contains(~[text:psx.html.admin_students.modifydata.lunch_id])').remove();
+        $j('tr:contains(~[text:psx.html.admin_students.modifydata.current_team])').remove();
+        $j('tr:contains(~[text:psx.html.admin_students.modifydata.current_house])').remove();
+        $j('tr:contains(~[text:psx.html.admin_students.modifydata.current_campusbuilding])').remove();
+        $j('tr:contains(~[text:psx.html.admin_students.modifydata.track])').remove();
+
         $j('td:contains(~[text:psx.html.admin_students.modifydata.parttime_student_indicator])').closest('tr').before($j('#nextyearhr'));
         $j('.hide').hide()
     });

@@ -1,0 +1,8 @@
+<script>
+  $j(function () {
+    $j('#input_guardian_email').attr('readonly',true);
+    let username = $j('input[name="currentUserName"]').val();
+    $j('#usernameLabel').after('<div><label for="staticUsername">Username:</label><span>' + username + '</span></div>');
+    $j('#usernameLabel').css('display','none');
+  })
+</script>

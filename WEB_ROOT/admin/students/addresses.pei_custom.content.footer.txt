@@ -1,14 +1,113 @@
-<div>
-<span id="locate-pei-address" class="yui-button yui-push-button" style="vertical-align: middle;">
-    <span class="first-child">
-        <a href="https://www.arcgis.com/apps/webappviewer/index.html?id=3db6ec75a9a5400fa56358088e1a4800&extent=-7162735.8801%2C5786025.1196%2C-6930367.3141%2C5918719.8007%2C102100" target="_blank">~[text:psx.htmlc.admin_students.addresses.pei_custom.locate_a_pei_address]</a>
-    </span>
-</span>
-</div>
-<script>
-$j(function() {
 
-    $j("#pzip").closest("td").append($j("#locate-pei-address"));
+<script type="text/javascript" src="/scripts/psQuery/psQuery.js"></script>
+
+<div class="box-round">
+    <h2>~[text:psx.htmlc.admin_students.addresses.previous_home_addresses]</h2>
+    <p><strong>~[text:psx.htmlc.admin_students.addresses.student_currently_lives_with]</strong> ~[tlist_sql; select c.displayvalue from students s join studentcorefields scf on s.dcid = scf.studentsdcid join codeset c on c.code = scf.guardianship and c.codetype = 'Guardianship' where s.id = ~(curstudid) order by 1;nonemessage=Guardianship not set]~(1;html)[/tlist_sql] </p>
+    <table class="linkDescList">
+        <colgroup>
+            <col style="width: 15%;">
+            <col style="width: 20%;">
+            <col style="width: 15%;">
+            <col style="width: 15%;">
+            <col style="width: 10%;">
+            <col style="width: 15%;">
+            <col style="width: 10%;">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>~[text:psx.htmlc.admin_students.addresses.student_lives_with]</th>
+                <th>~[text:psx.htmlc.admin_students.addresses.street]</th>
+                <th>~[text:psx.htmlc.admin_students.addresses.city]</th>
+                <th>~[text:psx.htmlc.admin_students.addresses.postal_code]</th>
+                <th>~[text:psx.htmlc.admin_students.addresses.date_archived]</th>
+                <th>~[text:psx.htmlc.admin_students.addresses.updated_by]</th>
+                <th>~[text:psx.htmlc.admin_students.addresses.school]</th>
+            </tr>
+        </thead>
+        <tbody>
+            ~[tlist_sql;
+            select
+                cs.displayvalue,
+                a.street,
+                a.city,
+                a.zip,
+                to_char(a.whencreated, 'mm/dd/yyyy') date_stored,
+                a.whocreated,
+                s.abbreviation,
+                a.schoolid
+            from u_address_history a
+            left join codeset cs
+                on cs.code = a.guardianship
+                and cs.codetype = 'Guardianship'
+            left join schools s
+                on s.school_number = a.schoolid
+            where a.studentsdcid = ~(studentrn)
+            order by a.id desc;alternatecolor;nonemessage=<tr nodata><td colspan="100%">~[text:psx.htmlc.admin_students.addresses.no_records]</td></tr>]
+            <tr>
+                <td>~(1;html)</td>
+                <td>~(2;html)</td>
+                <td>~(3;html)</td>
+                <td>~(4;html)</td>
+                <td>~(5;html)</td>
+                <td>~(6;html)</td>
+                <td>~(7;html) (~(8;html))</td>
+            </tr>
+            [/tlist_sql]
+        </tbody>
+    </table>
+</div>
+
+<div>
+    &nbsp;
+    <span id="locate-pei-address" class="yui-button yui-push-button" style="vertical-align: middle;">
+        <span class="first-child">
+            <a href="https://www.arcgis.com/apps/webappviewer/index.html?id=3db6ec75a9a5400fa56358088e1a4800&extent=-7162735.8801%2C5786025.1196%2C-6930367.3141%2C5918719.8007%2C102100" target="_blank">~[text:psx.htmlc.admin_students.addresses.pei_custom.locate_a_pei_address]</a>
+        </span>
+    </span>
+</div>
+
+    
+<script>
+    document.getElementById('btnSubmit').addEventListener('click', function(e) {
+        const stuDcid = ~(studentrn);
+        const userId = ~[x:userid];
+        const dateToday = '~[date]';
+        const schoolid = ~(studentcurrschoolid);
+        const oldStreet = document.getElementById('orig_pstreet').value;
+        const oldCity = document.getElementById('orig_pcity').value;
+        const oldZip = document.getElementById('orig_pzip').value;
+
+        const newApt = document.getElementById('papt').value;
+        let tempNewStreet = document.getElementById('pstreet').value;
+        const newStreet = newApt.length > 0 ? tempNewStreet + ', ' + newApt : tempNewStreet;
+        const newCity = document.getElementById('pcity').value;
+        const newZip = document.getElementById('pzip').value;
+        
+        console.log(oldStreet, newStreet)
+        
+        let sumOfChanges = 0;
+        if (oldStreet !== newStreet) {
+            sumOfChanges++;
+        }
+        if (oldCity !== newCity) {
+            sumOfChanges++;
+        }
+        if (oldZip !== newZip) {
+            sumOfChanges++;
+        }
+        
+        if (sumOfChanges > 0) {
+            $psq('u_address_history').insertChild({table: 'students', id: stuDcid}, {schoolid: schoolid, guardianship: '~([Students]guardianship)', street: oldStreet, city: oldCity, zip: oldZip}, function(retId) {
+                console.log(retId);
+            });
+        }
+        
+    }, false);
+    
+    $j(function() {
+        
+        $j("#pzip").closest("td").append($j("#locate-pei-address"));
 
     });
 

@@ -1,0 +1,3 @@
+<script>
+    $j("a[title|='Counselors']").remove();
+</script>

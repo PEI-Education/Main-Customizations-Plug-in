@@ -1,0 +1,7 @@
+<script>
+	$j(document).ready( function () {
+	
+		$j('#left_nav_report').append(' <li><a href="/admin/reports/EnterpriseReports.html" id="navEnterpriseReports" title="Enterprise Reports">Enterprise Reports</a></li> ');
+		
+	});
+</script>

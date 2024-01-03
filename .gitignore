@@ -1,3 +1,5 @@
 _Versions/
 _ZIPs/
-*.zip                                                                        
+*.zip 
+.DS_Store
+                                                                       
