@@ -1,7 +1,7 @@
 <script>
 (function () {
 
-   $j('.button-row').prepend('Total Credits: ~(*credit_hours)');
+   $j('.button-row').prepend('~[text:psx.htmlc.admin_students.previousgrades.total_credits] ~(*credit_hours)');
 
 }());
 </script>

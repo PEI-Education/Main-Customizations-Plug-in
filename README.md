@@ -88,7 +88,7 @@ These files should be deleted with each upgrade, so that the latest stock file c
 - Change medical alert to use mutation observer instead of direct edit.
 
 ## Change history
-- **2024.01.01**: Updated for Enhanced UI.
+- **2024.1.1**: Updated for Enhanced UI and French translation.
 - **1.2**: Fixed placement of Validate PEI Address button to uncouple it from the presence of a Google Maps validator; added modified Special Programs alert; added lines to translation files (among other edits); added access request to plugin.xml for CSP - installed in production on March 3, 2023 
 - **1.1.2**: Fixed issue cause a second indigenous status and legal name field set to be created dynamically
 - **1.1.1**: Fixed Edit Staff Information page to work with dropdown title

@@ -1,9 +1,5 @@
 <script>
-  $j(document).ready(function(){
-    if (document.documentElement.lang == 'en') {
-        $j('tr:contains(Track)').remove();
-    } else if (document.documentElement.lang == 'fr') {
-        $j('tr:contains(Suivre)').remove();
-    }
+  $j(function() {
+     $j('td:contains(~[text:psx.html.admin_students.reenroll.track])').closest('tr').remove(); 
   });
 </script>
