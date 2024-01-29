@@ -20,7 +20,16 @@
           <input type="text" name="[Students.StudentCoreFields]PSCore_Legal_Middle_Name" value="" size="15" maxlength="30" id="legalmiddleName">
           <input type="checkbox" name="[Students.U_Students_Extension]pei_uselegal" value="1" id="useLegal" class="psSpecialValidate" data-specialfunction="updateListenersLegal">
           <label for="useLegal">~[text:psx.htmlc.admin_students.general_demographics.pei_custom.use_legal]</label>
+          
+          <input type="hidden" value="~([Students.StudentCoreFields]PSCore_Legal_Last_Name)" id="orig_legallastName" name="orig_legallastName">
+          <input type="hidden" value="~([Students.StudentCoreFields]PSCore_Legal_First_Name)" id="orig_legalfirstName" name="orig_legalfirstName">
+          <input type="hidden" value="~([Students.StudentCoreFields]PSCore_Legal_Middle_Name)" id="orig_legalmiddleName" name="orig_legalmiddleName">
+         
       </td>
+  </tr>
+  <tr id="nameAdvisory">
+      <td></td>
+      <td>Legal name changes must be accompanied by documentation. Previous legal names are archived below.</td>
   </tr>
 </table>
 
@@ -37,9 +46,48 @@
     </span>
 </div>
 
+<div id="legalNameArchive" class="box-round">
+  <h2 class="toggle collapsed">~[text:psx.htmlc.admin_students.general_demographics.pei_custom.legal_name_change_history]</h2>
+  <div  class="hide">
+      <p>~[text:psx.htmlc.admin_students.general_demographics.pei_custom.changes_to_legal_name] ~[text:psx.htmlc.admin_students.general_demographics.pei_custom.previous_legal_names_are_archived]</p>
+      <table>
+      <tr>
+          <th>~[text:psx.htmlc.admin_students.general_demographics.pei_custom.former_legal_name]</th>
+          <th>~[text:psx.htmlc.admin_students.general_demographics.pei_custom.date_archived]</th>
+          <th>~[text:psx.htmlc.admin_students.general_demographics.pei_custom.updated_by]</th>
+          <th>~[text:psx.htmlc.admin_students.general_demographics.pei_custom.school]</th>
+      </tr>
+      <tbody>
+          ~[tlist_sql;
+          select
+              (n.legal_last || ', ' || n.legal_first || ' ' || n.legal_middle) as legal_name,
+              to_char(n.whencreated, 'mm/dd/yyyy') date_stored,
+              n.whocreated,
+              s.abbreviation,
+              n.schoolid
+          from u_name_history n
+          left join schools s
+              on s.school_number = n.schoolid
+          where n.studentsdcid = ~(studentrn)
+          order by n.id desc;alternatecolor;nonemessage=<tr nodata><td colspan="100%">~[text:psx.htmlc.admin_students.addresses.no_records]</td></tr>]
+          <tr>
+              <td>~(legal_name)</td>
+              <td>~(date_stored)</td>
+              <td>~(whocreated)</td>
+              <td>~(abbreviation) (~(schoolid))</td>
+          </tr>
+          [/tlist_sql]
+      </tbody>
+  </table>
+  </div>
+</div>
+
+
+
 <script>
 
-    document.getElementById('btnSubmit').addEventListener('click', function(e) {
+    const archiveAddressChange = () => {
+        console.log('Checking for home address changes')
         const stuDcid = ~(studentrn);
         const userId = ~[x:userid];
         const dateToday = '~[date]';
@@ -64,17 +112,57 @@
             sumOfChanges++;
         }
         if (oldCity !== newCity) {
-            sumOfChanges++;
+            sumOfChanges++; const stuDcid = ~(studentrn);
+        const userId = ~[x:userid];
+        const dateToday = '~[date]';
+        const schoolid = ~(studentcurrschoolid);
         }
         if (oldZip !== newZip) {
             sumOfChanges++;
         }
         
         if (sumOfChanges > 0) {
-            $psq('u_address_history').insertChild({table: 'students', id: stuDcid}, {who_stored: userId, date_stored: dateToday, schoolid: schoolid, guardianship: oldGuard, street: oldStreet, city: oldCity, zip: oldZip}, function(retId) {
-                console.log('Change in address/guardianship logged')
+            $psq('u_address_history').insertChild({table: 'students', id: stuDcid}, {schoolid: schoolid, guardianship: oldGuard, street: oldStreet, city: oldCity, zip: oldZip}, function(retId) {
+                console.log('Change in legal name logged')
             })
         } 
+    }
+    
+    const archiveNameChange = () => {
+        console.log('Checking for name changes');
+        const stuDcid = ~(studentrn);
+        const schoolid = ~(studentcurrschoolid);
+        
+        const newLast = document.getElementById('legallastName').value;
+        const newFirst = document.getElementById('legalfirstName').value;
+        const newMiddle = document.getElementById('legalmiddleName').value;
+
+        const prevLast = document.getElementById('orig_legallastName').value;
+        const prevFirst = document.getElementById('orig_legalfirstName').value;
+        const prevMiddle = document.getElementById('orig_legalmiddleName').value;
+        
+        let sumOfChanges = 0;
+        if (prevLast != newLast) {
+            sumOfChanges++;
+        }
+        if (prevFirst != newFirst) {
+            sumOfChanges++;
+        }
+        if (prevMiddle != newMiddle) {
+            sumOfChanges++;
+        }
+        
+        if (sumOfChanges > 0) {
+            $psq('u_name_history').insertChild({table: 'students', id: stuDcid}, {who_stored: userId, date_stored: dateToday, schoolid: schoolid, legal_last: prevLast, legal_first: prevFirst, legal_middle: prevMiddle }, function(retId) {
+                console.log('Change in legal name logged.')
+            })
+        } 
+    }
+    
+    document.getElementById('btnSubmit').addEventListener('click', function(e) {
+        
+        archiveAddressChange();
+        archiveNameChange();
         
     }, false);
     
