@@ -32,16 +32,16 @@ Catch-all for PEI-specific customizations that don't fit into a larger project.
 #### Student Pages
 
 - **Addressess** 
-  - Add a Validate a PEI Address button.
-  - Add an archive of previous addresses.
-- **Demographics** 
-  - Add legal name, indigenous self-identification, guardianship; removes or makes readonly a bunch of fields. Added the "Use legal name on report cards" option, and an listener to make the legal FIRST name required if that option is true. Legal last name not required, to account for students with no legal last name.
-  - Add archive of previous addresses (visible on addesses page, home addresses only).
-- **Edit Transfer** - From Transfer Info screen, when you try to edit the current or previous enrollment record, removes Track.
-- **Emergency/Medical** - Removes existing allergy field/adds our custom allergy field. Removes emergency contact (use contacts instead) and immunization fields.
-- **Historical Grades** - Add credit totals for easier view.
-- **Modify Data** - Removes unused fields like lunch ID, track, house, team, campus. Adds Next Year Home Room, to make it more accessible.
-- **Other Information** - Removes some US-specific fields
+    - Add a Validate a PEI Address button.
+    - Add an archive of previous addresses.
+  - **Demographics** 
+    - Add legal name, indigenous self-identification, guardianship; removes or makes readonly a bunch of fields. Added the "Use legal name on report cards" option, and an listener to make the legal FIRST name required if that option is true. Legal last name not required, to account for students with no legal last name.
+    - Add archive of previous addresses (visible on addesses page, home addresses only).
+  - **Edit Transfer** - From Transfer Info screen, when you try to edit the current or previous enrollment record, removes Track.
+  - **Emergency/Medical** - Removes existing allergy field/adds our custom allergy field. Removes emergency contact (use contacts instead) and immunization fields.
+  - **Historical Grades** - Add credit totals for easier view.
+  - **Modify Data** - Removes unused fields like lunch ID, track, house, team, campus. Adds Next Year Home Room, to make it more accessible.
+  - **Other Information** - Removes some US-specific fields
 - **Parents** - sets fields to read-only, so that duplicate contacts can't be created but any new contacts with original contact type set are displayed. Also, hiding this page hides the student email page, so this is a workaround.
 - **Re-enrolments** - Remove track
 - **Schedule Setup** - Add Next Year Home Room
@@ -55,7 +55,7 @@ Catch-all for PEI-specific customizations that don't fit into a larger project.
 
 ### Power Teacher
 
-- **Home page** - Removes silverware icon from PowerTeacher homepage. In version 22.5+ also removes the related header from the table.
+- **Home page** - Adds the current cycle day in the upper right hand corner of the homepage. Removes silverware icon from PowerTeacher homepage. In version 22.5+ also removes the related header from the table.
 - **Single Day Attendance** - Add Special Programs alert with PEI modifications.
 
 #### Studentpages
@@ -88,6 +88,7 @@ These files should be deleted with each upgrade, so that the latest stock file c
 - Change medical alert to use mutation observer instead of direct edit.
 
 ## Change history
+- **2024.5.2**: Added Cycle Day to PowerTeacher homepage.
 - **2024.5**: Migrated student header changes to student header wildcard.
 - **2024.1.2**: Added legal name archiving and support for first-name-only legal names.
 - **2024.1.1**: Updated for Enhanced UI and French translation.

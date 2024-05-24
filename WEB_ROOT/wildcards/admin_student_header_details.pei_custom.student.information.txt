@@ -1,2 +1,2 @@
-~[if#hr.~(home_room)#]<span>Homeroom: ~(home_room)</span>[/if#hr]
-~[if#srt.~([Students.U_Students_Extension]pei_studentservicesteam)#]<span>SRT: ~([Students.U_Students_Extension]pei_studentservicesteam)</span>[/if#srt]
+~[if#hr.~(home_room)#]<span>~[text:psx.htmlc.admin_students.student_header_details.homeroom]: ~(home_room)</span>[/if#hr]
+~[if#srt.~([Students.U_Students_Extension]pei_studentservicesteam)#]<span>~[text:psx.htmlc.admin_students.student_header_details.pod]: ~([Students.U_Students_Extension]pei_studentservicesteam)</span>[/if#srt]

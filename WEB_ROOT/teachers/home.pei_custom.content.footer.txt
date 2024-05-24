@@ -1,6 +1,30 @@
+~[tlist_sql;
+    select 
+      cyc.day_name
+    from calendar_day cal
+       left join cycle_day cyc
+       	on cyc.id = cal.cycle_day_id
+    where
+      trunc(cal.date_value) = trunc(sysdate)
+        	and cyc.schoolid = ~(curschoolid);nonemessage=]
+    <input type="hidden" value="~(1)" id="day-name">
+    <style>
+    #cycle-day {
+        font-weight: 800;
+        color: #0066A5;
+    }
+    </style>
+[/tlist_sql]
 <script>
 $j(document).ready(function() {
     $j("th:contains(~[text]psx.html.teachers.home.submit_lunch_counts[/text])").remove();
     $j("img[src$='btn_silverware.png']").closest('td').remove();
+
+    let cycleDay = document.getElementById('day-name').value
+    if (cycleDay) {
+        $j('h1').append(`<span id="cycle-day">${cycleDay}</span>`);
+    }
+    
 });
 </script>
+

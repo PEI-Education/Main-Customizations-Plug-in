@@ -1,0 +1,11 @@
+~[if#hideFinalGradesComment.prefschool.mobiledisablepp_fg=1]
+    
+    <div id="no-comments" class="feedback-alert">Comments are not available at this time. Please refer to your child's report card.</div>
+    
+    <script>
+        $j(document).ready(function() {
+            $j('.box-round').remove();
+        });
+        
+    </script>
+[/if#hideFinalGradesComment]  
