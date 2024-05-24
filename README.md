@@ -66,7 +66,8 @@ Catch-all for PEI-specific customizations that don't fit into a larger project.
 ### Wildcards
 
 - **teachers_title_student_end_css.pei_custom.student.alert.txt** - Adds 18+/Independent 18+ indicator, homeroom, student services pod to student header + mutation observer for Student Services Alert (teacher portal).
-- **title_student_end_css.pei_custom.student.alert.txt** - Adds 18+/Independent 18+ indicator, homeroom, student services pod to student header + mutation observer for Student Services Alert (admin portal).
+- **title_student_end_css.pei_custom.student.alert.txt (admin_student_header_details.pei_custom.student.alert.txt in EUI)** - Adds 18+/Independent 18+ indicator + mutation observer for Student Services Alert (admin portal).
+- **title_student_end_css.pei_cutom.student.alert.txt (admin_student_header_details.pei_custom.stdent.information.txt in EUI)** - Adds homeroom and student services pod to student header.
 - **guardian_header.pei_custom.leftnav.footer.txt** - Removes the teacher comments button from the public portal.
 - **teachers_nav_css.pei_custom.leftnav.footer.txt** - Removes link to meal counts from navigation on Power Teacher home page.
 
