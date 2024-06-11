@@ -1,0 +1,23 @@
+
+<!-- Add PEI Reoprt Card Data -->
+~[if.~(studentscreenaccess;termgrades.html)=1]
+
+<script>
+
+$j(document).ready(function()
+	{
+		$j('ul#std_academics').append('<li><a href="pei_opc_review.html?frn=~(studentfrn)">~[text:psx.htmlc.admin.students.more2.opc_review]</a></li>');
+
+		$j('ul#std_academics li').sort(function(a, b)
+			{
+				if($j(a).text() < $j(b).text()) return -1;
+				if($j(a).text() > $j(b).text()) return 1;
+				return 0;
+			}
+		).appendTo('ul#std_academics');
+	}
+);
+
+</script>
+[/if]
+<!-- end PEI Report Card Data -->
