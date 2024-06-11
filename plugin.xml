@@ -4,7 +4,7 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   description="Customizations specific to Prince Edward Island"
   name="PEI Customizations"
-  version="2024.5.2"
+  version="2024.6.0.0"
   xsi:schemaLocation="http://plugin.powerschool.pearson.com plugin.xsd">
   <publisher name="Luke Walker, Dept of Education and Early Years">
     <contact email="lawalker@gov.pe.ca"/>

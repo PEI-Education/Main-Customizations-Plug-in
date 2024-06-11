@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<head>
+<title>PEI OPC Review</title>
+<!-- required scripts -->
+~[wc:commonscripts]
+<!-- Required style sheets: screen.css, and print.css -->
+<link href="/images/css/screen.css" rel="stylesheet" media="screen">
+<link href="/images/css/print.css" rel="stylesheet" media="print">
+</head> 
+<body> 
+~[wc:admin_header_frame_css]
+<!-- breadcrumb start -->
+<a href="/admin/home.html" target="_top">Start Page</a> &gt; <a href="/admin/students/home.html?selectstudent=nosearch" target="_top">Student Selection</a> &gt; PEI OPC Review
+<!-- breadcrumb end -->
+~[wc:admin_navigation_frame_css]
+<!-- start of main menu and content -->
+~[wc:changes_saved_or_deleted_header]
+
+~[wc:title_student_begin_css]PEI OPC Review~[wc:title_student_end_css]
+ 
+    <!-- start of content area --> 
+        <form action="/~[self]~[if.gpv.recordSaved=]&recordSaved=1[/if]" method="POST">        
+            <div class="box-round">
+            <table border="0" cellspacing="0" cellpadding="4" class="linkDescList">
+                <colgroup>
+                    <col>
+                    <col>
+                </colgroup>
+                <tbody>
+                    <tr> 
+                        <td><b>List Credit Summary:</b><br>English: &#10;Language: &#10;Mathematics: &#10;Science: &#10;Social Studies: &#10;Electives: 
+                        </td> 
+                        <td>
+                            <textarea name="[Students.U_pei_opcreview]opc_creditsummary" cols="80" rows="10"></textarea>
+                        </td>
+                    </tr>
+                    <tr> 
+                        <td><b>Previous School(s):</b><br>
+                        Ex. Some School Name, Province, Country, yyyy-yyyy
+                        </td>
+                        <td>
+                            <textarea name="[Students.U_pei_opcreview]opc_previousschool" cols="80" rows="5" ></textarea>
+                        </td>
+                    </tr>
+                    <tr> 
+                        <td class="bold">Reviewed by PEI School:
+                        </td> 
+                        <td>
+                            <select name="[Students.U_pei_opcreview]opc_peireviewschool">
+                            <option value="314">Bluefield High	</option>
+                            <option value="310">Charlottetown Rural Senior High	</option>
+                            <option value="311">Colonel Gray Senior High	</option>
+                            <option value="510">École Évangeline	</option>
+                            <option value="511">École François-Buote	</option>
+                            <option value="515">École La-Belle-Cloche	</option>  
+                            <option value="514">École Pierre-Chiasson	</option>
+                            <option value="513">École-sur-Mer	</option>
+                            <option value="211">Kensington Intermediate Senior High</option>
+                            <option value="212">Kinkora Regional High	</option>
+                            <option value="410">Montague Regional High	</option>
+                            <option value="411">Morell Regional High School	</option>
+                            <option value="412">Souris Regional School	</option>
+                            <option value="215">Three Oaks Senior High	</option>
+                            <option value="113">Westisle Composite High	</option>
+                            </select>
+                        </td>
+                        
+                    </tr>
+                    <tr> 
+                        <td class="bold">Credits Under Review:
+                        </td>
+                        <td>
+                        <input type="text" size="3" name="[Students.U_pei_opcreview]opc_totalcreditsreviewed" value="~([Students.U_pei_opcreview]opc_totalcreditsopc_totalcreditsreviewed)">
+                        </td>
+                    </tr>
+                    <tr> 
+                        <td class="bold">Total Credits Awarded:
+                        </td> 
+                        <td>
+                            <input type="text" size="3" name="[Students.U_pei_opcreview]opc_totalcreditsawarded" id="creditsAwarded" value="~([Students.U_pei_opcreview]opc_totalcreditsawarded)">
+                            <span id="creditReminder" style="display: none;">Reminder: Create an OPC entry on the <a href="previousgrades.html?frn=~(studentfrn)" target="_blank">Historical Grades page</a> (opens in a new tab)</span>
+                        </td>
+                    </tr>
+                    <tr> 
+                        <td class="bold">Review Date: 
+                        </td>
+                        <td>
+                            <input type="text" size="12" name="[Students.U_pei_opcreview]opc_reviewdate"  placeholder="MM/DD/YYYY" value="~([Students.U_pei_opcreview]opc_reviewdate)">
+                        </td>
+                    </tr>
+                    <tr> 
+                        <td class="bold">Authorized by: 
+                        </td>
+                        <td>
+                            <input type="text" size="80" name="[Students.U_pei_opcreview]opc_authorizedby" value="~([Students.U_pei_opcreview]opc_authorizedby)" >
+                            <input type="hidden" name="[Students.U_pei_opcreview]opc_approved" value="~([Students.U_pei_opcreview]opc_approved)" id="opcApproved">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <div class="button-row"><input type="hidden" name="ac" value="prim"><button type="submit" id="btnSubmit" name="btnSubmit">Submit</button>
+            </div>
+        </div>
+    </form>
+    <br>
+    <!-- end of content area --> 
+     ~[wc:admin_footer_frame_css]
+     <script>
+      $j(function() {
+        $j('#creditsAwarded').on('propertychange input', function() {
+          let opc_approved = false;
+          if (this.value > 0) {
+            opc_approved = true;
+            $j('#creditReminder').show()
+          }
+          $j('#opcApproved').val(opc_approved); 
+        })
+      })
+  </script>
+</body> 
+</html>
