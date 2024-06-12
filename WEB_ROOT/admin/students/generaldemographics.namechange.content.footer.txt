@@ -1,0 +1,11 @@
+<table>
+    <tr class="headerrow" id="namechange">
+        <td class="bold">Student Name</td>
+        <td class="bold">Legal name changes require documentation. All substansive name changes require a <a href ="pei_namechange.html?frn=~(studentfrn)" target="_blank">name change form</a>.</td>
+    </tr>
+</table>
+<script>
+$j(document).ready(function() {
+    $j('#lastName').closest('tr').before($j('#namechange'));
+});
+</script>

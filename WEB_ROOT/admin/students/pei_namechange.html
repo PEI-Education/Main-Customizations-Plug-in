@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Name Change Form</title>
+    <style>
+        body {
+            font-family: arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.4;
+            font-size: 9.5pt;
+        }
+        
+        h1, h2 {
+            width: 100%;
+            text-align: center;
+            margin: 0;
+        }
+        
+        h1 {
+            font-size: 16pt;
+        }
+        
+        h2 {
+            font-size: 12pt;
+            margin-bottom: 0.1in;
+        }
+        
+        td, th {
+          text-align: left;
+          padding: 5px 5px 5px 8px;
+        }
+
+        ul, li{
+            font-size: 9.5pt;
+            line-height: 1.4;
+        }
+        
+        .container {
+            display: block;
+            width: 8in;
+            height: 10.5in;
+            margin: 0.25in;
+            padding: 0;
+        }
+        
+        .name-table {
+            width: 8in;
+            border-collapse: collapse;
+            border: 2px solid #050000;
+        }
+        
+        .border-bottom {
+            border-bottom: 1px solid black;
+        }
+        
+        .fine-print {
+            font-size: 9pt;
+        }
+        
+        .checkbox {
+            vertical-align: middle;
+            height: 20px;
+        }
+        
+        .checkbox-text {
+            vertical-align: middle;
+            padding-left: 5px;
+        }
+
+        @media print {
+        .noprint {
+        display: none;
+        }
+        }
+    </style>
+    ~[wc:commonscripts]
+</head>
+<body>
+    <div class="container">
+        <div class="noprint" style="font-size: 12px; color: red; width: 8in; padding: 5px; margin: 0.25in;">
+            <h2>[text:psx.htmlc.admin.students.namechange.instructions]</h2>
+            <p>[text:psx.htmlc.admin.students.namechange.thetextin]</p><br>
+            <p><strong>[text:psx.htmlc.admin.students.namechange.tipsfor]</strong></p>
+            <ul class="text">
+              <li>[text:psx.htmlc.admin.students.namechange.toprint]</li>
+              <li>[text:psx.htmlc.admin.students.namechange.thisform]</li>
+              <li>[text:psx.htmlc.admin.students.namechange.turn] <strong>[text:psx.htmlc.admin.students.namechange.on]</strong> [text:psx.htmlc.admin.students.namechange.printingof]</li>
+              <li>[text:psx.htmlc.admin.students.namechange.turn] <strong>[text:psx.htmlc.admin.students.namechange.off]</strong> [text:psx.htmlc.admin.students.namechange.printingofheader] [text:psx.htmlc.admin.students.namechange.ifthisis] [text:psx.htmlc.admin.students.namechange.theseare]</li>
+              <li>[text:psx.htmlc.admin.students.namechange.select] <strong>[text:psx.htmlc.admin.students.namechange.nomargins]</strong> [text:psx.htmlc.admin.students.namechange.whenprinting] [text:psx.htmlc.admin.students.namechange.thenecessary] [text:psx.htmlc.admin.students.namechange.otherwise]</li>
+          </ul>
+          <p>[text:psx.htmlc.admin.students.namechange.oncecomplete]</p>
+          <p>[text:psx.htmlc.admin.students.namechange.thisformopened] [text:psx.htmlc.admin.students.namechange.onceyouare]</p>
+          </div>
+        <h1>~[text:psx.htmlc.admin.students.namechange.title]</h1>
+        <h2>~[text:psx.htmlc.admin.students.namechange.department]</h2>
+        <table class="name-table">
+            <tr>
+                <td class="border-bottom"><b>~[text:psx.htmlc.admin.students.namechange.studentnumber] </b> ~(student_number)</td>
+                <td class="border-bottom"><b>~[text:psx.htmlc.admin.students.namechange.dob] </b></td>
+                <td class="border-bottom">~(dob)</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <b>~[text:psx.htmlc.admin.students.namechange.current]</b>
+                </td>
+                <td>
+                    <b>~[text:psx.htmlc.admin.students.namechange.change]</b>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <b>~[text:psx.htmlc.admin.students.namechange.legalfirst]</b><br>
+                    ~[text:psx.htmlc.admin.students.namechange.verification]
+                </td>
+                <td>
+                    ~([Students.StudentCoreFields]PSCore_Legal_First_Name)
+                </td>
+                <td>
+                    __________________________
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <b>~[text:psx.htmlc.admin.students.namechange.legalmiddle]</b><br>
+                    ~[text:psx.htmlc.admin.students.namechange.verification]
+                </td>
+                <td>
+                    ~([Students.StudentCoreFields]PSCore_Legal_Middle_Name)
+                </td>
+                <td>
+                    __________________________
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <b>~[text:psx.htmlc.admin.students.namechange.legallast]</b><br>
+                    ~[text:psx.htmlc.admin.students.namechange.verification]
+                </td>
+                <td>
+                    ~([Students.StudentCoreFields]PSCore_Legal_Last_Name)
+                </td>
+                <td>
+                    __________________________
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <b>~[text:psx.htmlc.admin.students.namechange.commonfirst]</b><br>
+                </td>
+                <td>
+                    ~(first_name)
+                </td>
+                <td>
+                    __________________________
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <b>~[text:psx.htmlc.admin.students.namechange.commonmiddle]</b><br>
+                </td>
+                <td>
+                    ~(middle_name)
+                </td>
+                <td>
+                    __________________________
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <b>~[text:psx.htmlc.admin.students.namechange.commonlast]</b><br>
+                </td>
+                <td>
+                    ~(last_name)
+                </td>
+                <td>
+                    __________________________
+                </td>
+            </tr>  
+        </table>
+        
+        <ul style="list-style-type:disc;">
+            <li>
+                ~[text:psx.htmlc.admin.students.namechange.thelegalandcommon]
+                <ul>
+                    <li>~[text:psx.htmlc.admin.students.namechange.commonandlegal]</li> 
+                    <li>~[text:psx.htmlc.admin.students.namechange.graduationdiploma]</li>    
+                    <li>~[text:psx.htmlc.admin.students.namechange.enrollmentconfirmation]</li>
+                    <li>~[text:psx.htmlc.admin.students.namechange.highschooltranscript]</li> 
+                    <li>~[text:psx.htmlc.admin.students.namechange.reportcarddisplays]</li>
+                </ul>
+            </li>
+            <li>
+                ~[text:psx.htmlc.admin.students.namechange.commonnameis]
+                <ul>
+                    <li>~[text:psx.htmlc.admin.students.namechange.classlists]</li>
+                    <li>~[text:psx.htmlc.admin.students.namechange.listsprovided]</li>
+                </ul>
+            </li>
+        </ul>
+        <p class="fine-print"><i>~[text:psx.htmlc.admin.students.namechange.thepublicschools] ~[text:psx.htmlc.admin.students.namechange.everyeffortwill] ~[text:psx.htmlc.admin.students.namechange.externalcommunications]</i></p>
+        <hr>
+        <p>
+            ~[text:psx.htmlc.admin.students.namechange.checkallthat]
+        </p>
+        <div>
+            <img class="checkbox" src="/images/namechange.png" height="20px"><span class="checkbox checkbox-text">~[text:psx.htmlc.admin.students.namechange.irequestlegal]</span>
+        </div>
+        <div>
+            <img class="checkbox" src="/images/namechange.png" height="20px"><span class="checkbox checkbox-text">~[text:psx.htmlc.admin.students.namechange.irequestcommon]</span>
+        </div>
+        <table>
+            <tr>
+                <td>
+                    ~[text:psx.htmlc.admin.students.namechange.parent]
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    ________________________________________________________
+                </td>
+                <td>
+                    ~[text:psx.htmlc.admin.students.namechange.date] _____________________
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    ~[text:psx.htmlc.admin.students.namechange.student]
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    ________________________________________________________
+                    </td>
+                <td>
+                    ~[text:psx.htmlc.admin.students.namechange.date] _____________________
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    ~[text:psx.htmlc.admin.students.namechange.administrator]
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    ________________________________________________________
+                </td>
+                <td>
+                    ~[text:psx.htmlc.admin.students.namechange.date] _____________________
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    ~[text:psx.htmlc.admin.students.namechange.studentinformation]
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    ________________________________________________________
+                </td>
+                <td>
+                    ~[text:psx.htmlc.admin.students.namechange.date] _____________________
+                </td>
+            </tr>
+    
+        </table>
+        <br>
+       <div class="fine-print">
+            <img class="checkbox" src="/images/namechange.png"> <span class="checkbox">~[text:psx.htmlc.admin.students.namechange.documentationform]</span>
+        </div>
+        <p>~[text:psx.htmlc.admin.students.namechange.filing]</p>
+    </div>
+</body>
+</html>
