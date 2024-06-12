@@ -1,0 +1,15 @@
+{
+  "pages": [
+        {
+          "htmlID": "navOPCReview",
+          "title": "psx.htmlc.admin_nav.students.opc_review",
+          "sortOrder": 250,
+          "districtLevelContext": 0,
+          "contextType": "student",
+          "requiredContext": "student",
+          "pageURL": "/admin/students/pei_opc_review.html?frn=~(studentfrn)",
+          "parentHTMLID": "navStudentAcademicProfile",
+          "version": "24.6.0.0"
+        }
+    ]
+}

@@ -11,26 +11,18 @@
 
 <script>
   $j(document).ready(function() {
-    $j('#selectGender').closest('tr').remove();
+    $j('tr:contains(StatePrId)').remove();
     $j('.headerrow').remove();
-    $j('#defaultEthnicity').closest('tr').remove();
     $j('input[name="SaveRace"]').closest('tr').remove();
     $j('#primaryethnicity').closest('tr').remove();
-    $j('#title').after($j('#selectTitle'));
-    $j('#title').remove();
+    $j('input[name="title"]').replaceWith($j('#selectTitle'));
+    $j('td:contains(~[text:psx.html.admin_faculty.new.home_phone_])').closest('tr').before($j('#staffMobile'));
 
-    if (document.documentElement.lang == 'en') {
-      $j('tr:contains(StatePrId)').remove();
-      $j('tr:contains(Lunch ID)').remove();
-      $j('tr:contains(SSN)').remove();
-      $j('tr:contains(DOB)').remove();
-      $j('tr:contains(Home Phone)').before($j('#staffMobile'));
-    } else if (document.documentElement.lang == 'fr') {
-      $j('tr:contains(StatePrId)').remove();
-      $j('tr:contains(ID du repas)').remove();
-      $j('tr:contains(SSN)').remove();
-      $j('tr:contains(DDN)').remove();
-      $j('tr:contains(téléphone résidentiel)').before($j('#staffMobile'));
-    }
+    $j('select[name="gender"]').closest('tr').remove();
+    $j('select[name="Ethnicity"]').closest('tr').remove();
+    $j('input[name="lunch_id"]').closest('tr').remove();
+    $j('input[name="ssn"]').closest('tr').remove();
+    $j('input[name="dob"]').closest('tr').remove()
+    
   });
 </script>
