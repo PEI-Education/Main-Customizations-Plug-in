@@ -1,5 +1,6 @@
 
-<!-- Add PEI Reoprt Card Data -->
+<!-- Add PEI OPC Review page -->
+<!-- This fragment can be deleted after transitioning to 24.5 -->
 ~[if.~(studentscreenaccess;termgrades.html)=1]
 
 <script>
@@ -20,4 +21,4 @@ $j(document).ready(function()
 
 </script>
 [/if]
-<!-- end PEI Report Card Data -->
+<!-- end PEI OPC Review page -->
