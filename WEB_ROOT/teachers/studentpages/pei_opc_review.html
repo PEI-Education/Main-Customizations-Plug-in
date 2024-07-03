@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+      OPC Review
+    </title>
+    ~[wc:commonscripts]
+    <link href="/images/css/screen.css" rel="stylesheet" media="screen" />
+    <link href="/images/css/print.css" rel="stylesheet" media="print" />
+    <script language="JavaScript">
+      function formHandler(form) {
+        var URL =
+          document.navigation.page.options[
+            document.navigation.page.selectedIndex
+          ].value;
+        window.location.href = URL;
+      }
+    </script>
+</head> 
+<body> 
+~[wc:teachers_header_fr_css]
+
+ <form name="navigation">
+ ~[wc:teachers_title_student_begin_css]
+Out-of-Province Credit Review
+ ~[wc:teachers_title_student_end_css]
+ </form>
+    <!-- start of content area --> 
+    <div class="box-round">
+    
+        <table border="0" cellspacing="0" cellpadding="4" class="linkDescList">
+            <colgroup>
+                <col>
+                <col>
+            </colgroup>
+            <tbody>
+                <tr> 
+                    <td class="bold">List Credit Summary: 
+                    </td> 
+                    <td>
+                        ~([Students.U_pei_opcreview]opc_creditsummary)
+                    </td>
+                </tr>
+                <tr> 
+                    <td class="bold">Previous School(s): 
+                    </td>
+                    <td>
+                        ~([Students.U_pei_opcreview]opc_previousschool)
+                    </td>
+                </tr>
+                <tr> 
+                    <td class="bold">Reviewed by PEI School:
+                    </td> 
+                    <td>
+                        ~([Students.U_pei_opcreview]opc_peireviewschool)
+                    </td>
+                </tr>
+                <tr> 
+                    <td class="bold">Credits Under Review:
+                    </td>
+                    <td>
+                        ~([Students.U_pei_opcreview]opc_totalcreditsreviewed)
+                    </td>
+                </tr>
+                <tr> 
+                    <td class="bold">Total Credits Awarded:
+                    </td> 
+                    <td>
+                        ~([Students.U_pei_opcreview]opc_totalcreditsawarded)
+                    </td>
+                </tr>
+                <tr> 
+                    <td class="bold">Review Date: </td> 
+                     <td>
+                        ~([Students.U_pei_opcreview]opc_reviewdate)
+                    </td>
+                </tr>
+                <tr> 
+                    <td class="bold">Authorized by: 
+                    </td>
+                    <td>
+                        ~([Students.U_pei_opcreview]opc_authorizedby)
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div> 
+    <!-- end of content area --> 
+    ~[wc:teachers_footer_css]
+</body> 
+</html>
