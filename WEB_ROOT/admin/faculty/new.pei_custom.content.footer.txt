@@ -1,9 +1,26 @@
+<table>
+<tr id="staffMobile" class="evenRow">
+	<td class="bold">~[text:psx.htmlc.admin_faculty.edit.pei_custom.mobile_phone]</td>
+	<td>  <input type="text" name="[Users]mobile_phone" value="" size="25" maxlength="50">,</td>
+</tr>
+</table>
+
+<div>
+    <select name="[05]title" id="selectTitle">~[x:codesetoptions;codetype=Staff Title;includeblank;value=~([05]title)]</select>
+</div>
+
+
 <script>
   $j(document).ready(function() {
+
     $j('select[name="gender"]').closest('tr').remove();
     $j('select[name="Ethnicity"]').closest('tr').remove();
     $j('input[name="lunch_id"]').closest('tr').remove();
     $j('input[name="ssn"]').closest('tr').remove();
     $j('input[name="dob"]').closest('tr').remove()
+    
+    $j('input[name="title"]').replaceWith($j('#selectTitle'));
+    $j('input[name="home_phone"]').closest('tr').before($j('#staffMobile'));
+
   });
 </script>
