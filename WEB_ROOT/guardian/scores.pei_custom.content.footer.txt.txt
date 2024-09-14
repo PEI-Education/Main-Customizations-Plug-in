@@ -1,0 +1,9 @@
+<script>
+    $j(document).ready(function() {
+        ~[if#hideFinalGradesComment.prefschool.mobiledisablepp_fg=1]
+            $j("div.comment").remove();
+            $j("p:contains('~[text:psx.html.guardian.scores.teacher_comments]')").remove();
+        [/if#hideFinalGradesComment]
+    });
+</script>
+

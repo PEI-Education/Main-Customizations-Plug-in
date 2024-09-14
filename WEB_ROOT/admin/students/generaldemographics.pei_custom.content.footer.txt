@@ -1,4 +1,10 @@
 <script type="text/javascript" src="/scripts/psQuery/psQuery.js"></script>
+<table id="nameChangeTemp">
+    <tr class="headerrow" id="namechange">
+        <td class="bold">Student Name</td>
+        <td class="bold">Legal name changes require documentation. All substantive name changes require a <a href="/admin/pei_reports/namechange.html?frn=~(studentfrn)" target="_blank">name change form</a>.</td>
+    </tr>
+</table>
 
 <table>
   <tr class="headerrow" id="generalInfo">
@@ -188,6 +194,8 @@
         $j('#fieldMotherDayPhone').prop('readonly',true);
         $j('#fieldMotherEmployer').prop('readonly',true);
         $j('#fieldMotherHomePhone').prop('readonly',true);
+        $j('#lastName').closest('tr').before($j('#namechange'));
+        $j('#nameChangeTemp').remove();
     });
 
 function conditionalLegalRequired(jQueryInput) {

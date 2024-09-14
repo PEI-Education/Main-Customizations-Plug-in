@@ -6,7 +6,7 @@
 </table>
 
 <div>
-    <select name="[05]title" id="selectTitle">~[x:codesetoptions;codetype=Staff Title;includeblank;value=~([05]title)]</select>
+    <select name="[Users]title" id="selectTitle">~[x:codesetoptions;codetype=Staff Title;includeblank;value=~([Users]title)]</select>
 </div>
 
 <script>

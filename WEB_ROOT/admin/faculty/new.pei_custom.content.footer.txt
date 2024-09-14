@@ -1,7 +1,11 @@
+<div>
+    <select name="title" id="selectTitle">~[x:codesetoptions;codetype=Staff Title;includeblank;value=~([Users]title)]</select>
+</div>
+
 <table>
 <tr id="staffMobile" class="evenRow">
 	<td class="bold">~[text:psx.htmlc.admin_faculty.edit.pei_custom.mobile_phone]</td>
-	<td>  <input type="text" name="[Users]mobile_phone" value="" size="25" maxlength="50">,</td>
+	<td>  <input type="text" name="[Users.U_Users_Extension]mobile_phone" value="" size="25" maxlength="50"></td>
 </tr>
 </table>
 

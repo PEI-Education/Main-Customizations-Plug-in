@@ -89,6 +89,7 @@ These files should be deleted with each upgrade, so that the latest stock file c
 - Change medical alert to use mutation observer instead of direct edit.
 
 ## Change history
+- **2024.9**: Added name change form, OPC Review screen, and various updates for PS 24.7/to remove code relating to old UI.
 - **2024.6.1**: Added OPC Review page to admin and teacher portals (read-only for PT), and OPC Alert to students with approved OPCs.
 - **2024.5.2**: Added Cycle Day to PowerTeacher homepage.
 - **2024.5**: Migrated student header changes to student header wildcard.
