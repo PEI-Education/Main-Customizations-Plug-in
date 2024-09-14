@@ -1,4 +1,4 @@
-<table>
+dv<table>
 
          <tr id="VP2">
             <th colspan="2">~[text:psx.html.admin_schools.edit.assistantviceprincipal] </th>

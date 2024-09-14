@@ -1,2 +1,17 @@
-~[if#hr.~(home_room)#]<span>Homeroom: ~(home_room)</span>[/if#hr]
-~[if#srt.~([Students.U_Students_Extension]pei_studentservicesteam)#]<span>SRT: ~([Students.U_Students_Extension]pei_studentservicesteam)</span>[/if#srt]
+~[if#hr.~(home_room)#]<span>~[text:psx.htmlc.admin_students.student_alerts.pei_custom.hr]: ~(home_room)</span>[/if#hr]
+~[if#srt.~([Students.U_Students_Extension]pei_studentservicesteam)#]<span>~[text:psx.htmlc.admin_students.student_alerts.pei_custom.pod]: ~([Students.U_Students_Extension]pei_studentservicesteam) </span>[/if#srt]
+<span id="prevAttendance">~([Students.U_Students_Extension]pei_attendancelastyear)</span>
+
+<script>
+    $j(function() {
+        let prevAttendance = $j('#prevAttendance').text();
+        let year = ~(yearid);
+        let lastYear1 = 1990 + year - 1
+        let lastYear2 = 1990 + year
+        let noData = `${lastYear1}-${lastYear2}: No data`;
+        if (!prevAttendance) $j('#prevAttendance').text(noData);
+        if (prevAttendance.includes('Chronic')) $j('#prevAttendance').css('color','red');
+        if (prevAttendance.includes('At-Risk')) $j('#prevAttendance').css('color','orange');
+        if (prevAttendance.includes('Satisfactory')) $j('#prevAttendance').css('color','green');
+    })
+</script>
