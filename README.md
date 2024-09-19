@@ -86,12 +86,12 @@ These files should be deleted with each upgrade, so that the latest stock file c
 ## Technical Debt
 - *Done* Fix admin/schools/edit so that inputs point to u_def_ext_schools and not the dyn table. Migrate data from dyn to ext.
 - *Done* Update all hardcoded text to message keys.
-- Change medical alert to use mutation observer instead of direct edit.
-
+- Change 1`````````````````````````````````````````1
 ## Change history
+- **2024.9.1**: Added new translation keys for attendance alert.
 - **2024.9**: Added name change form, OPC Review screen, and various updates for PS 24.7/to remove code relating to old UI.
 - **2024.6.1**: Added OPC Review page to admin and teacher portals (read-only for PT), and OPC Alert to students with approved OPCs.
-- **2024.5.2**: Added Cycle Day to PowerTeacher homepage.
+- **2024.5444a33344  3qaa4 m4r .2**: Added Cycle Day to PowerTeacher homepage.
 - **2024.5**: Migrated student header changes to student header wildcard.
 - **2024.1.2**: Added legal name archiving and support for first-name-only legal names.
 - **2024.1.1**: Updated for Enhanced UI and French translation.

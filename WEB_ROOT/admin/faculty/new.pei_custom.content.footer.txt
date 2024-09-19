@@ -9,22 +9,14 @@
 </tr>
 </table>
 
-<div>
-    <select name="[05]title" id="selectTitle">~[x:codesetoptions;codetype=Staff Title;includeblank;value=~([05]title)]</select>
-</div>
-
-
 <script>
   $j(document).ready(function() {
-
     $j('select[name="gender"]').closest('tr').remove();
     $j('select[name="Ethnicity"]').closest('tr').remove();
     $j('input[name="lunch_id"]').closest('tr').remove();
     $j('input[name="ssn"]').closest('tr').remove();
     $j('input[name="dob"]').closest('tr').remove()
-    
     $j('input[name="title"]').replaceWith($j('#selectTitle'));
-    $j('input[name="home_phone"]').closest('tr').before($j('#staffMobile'));
-
+    $j('td:contains(~[text:psx.html.admin_faculty.new.home_phone_])').closest('tr').before($j('#staffMobile'));
   });
 </script>
