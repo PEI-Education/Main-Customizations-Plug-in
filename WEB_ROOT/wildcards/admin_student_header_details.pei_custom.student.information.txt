@@ -1,4 +1,4 @@
-~[if#hr.~(home_room)#]<span>~[text:psx.htmlc.admin_students.student_alerts.pei_custom.hr]: ~(home_room)</span>[/if#hr]
+&nbsp; &nbsp; ~[if#hr.~(home_room)#]<span>~[text:psx.htmlc.admin_students.student_alerts.pei_custom.hr]: ~(home_room)</span>[/if#hr]
 ~[if#srt.~([Students.U_Students_Extension]pei_studentservicesteam)#]<span>~[text:psx.htmlc.admin_students.student_alerts.pei_custom.pod]: ~([Students.U_Students_Extension]pei_studentservicesteam) </span>[/if#srt]
 <span id="prevAttendance">~([Students.U_Students_Extension]pei_attendancelastyear)</span>
 
@@ -15,3 +15,9 @@
         if (prevAttendance.includes('Satisfactory')) $j('#prevAttendance').css('color','green');
     })
 </script>
+
+<style>
+    #student_details_information {
+        font-size: 12px;
+    }
+</style>

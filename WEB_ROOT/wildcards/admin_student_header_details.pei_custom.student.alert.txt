@@ -42,7 +42,7 @@
 </script>
 
 <style>
-    .student_alerts img, .student_alerts svg {
+    .student_alerts img, .student_alerts svg, pds-icon[name="exclamation"], pds-icon[name="user"] {
         width: 20px !important;
         height: 20px !important;
     }
