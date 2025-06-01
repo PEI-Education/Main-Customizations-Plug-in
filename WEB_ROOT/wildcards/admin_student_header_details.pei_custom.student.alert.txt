@@ -34,7 +34,7 @@
     }
     
     waitForElm('#pssp_alert_sped').then(elm => {
-        elm.title = "Student Services Alert";
+        elm.title = "~[text:psx.htmlc.wildcards.admin_student_header_details.student_services_alert]";
         let url = elm.href.split('?');
         let newUrl = `https://pei.powerschool.com/admin/alerts/student_services_alert_pei.html?${url[1]}`;
         elm.href=newUrl;

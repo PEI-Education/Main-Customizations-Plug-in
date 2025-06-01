@@ -31,17 +31,18 @@ Catch-all for PEI-specific customizations that don't fit into a larger project.
 
 #### Student Pages
 
-- **Addressess** 
-    - Add a Validate a PEI Address button.
-    - Add an archive of previous addresses.
-  - **Demographics** 
-    - Add legal name, indigenous self-identification, guardianship; removes or makes readonly a bunch of fields. Added the "Use legal name on report cards" option, and an listener to make the legal FIRST name required if that option is true. Legal last name not required, to account for students with no legal last name.
-    - Add archive of previous addresses (visible on addesses page, home addresses only).
-  - **Edit Transfer** - From Transfer Info screen, when you try to edit the current or previous enrollment record, removes Track.
-  - **Emergency/Medical** - Removes existing allergy field/adds our custom allergy field. Removes emergency contact (use contacts instead) and immunization fields.
-  - **Historical Grades** - Add credit totals for easier view.
-  - **Modify Data** - Removes unused fields like lunch ID, track, house, team, campus. Adds Next Year Home Room, to make it more accessible.
-  - **Other Information** - Removes some US-specific fields
+- **Addressess**
+  - Add a Validate a PEI Address button.
+  - Add an archive of previous addresses.
+- **Demographics**
+  - Add legal name, indigenous self-identification, guardianship; removes or makes readonly a bunch of fields. Added the "Use legal name on report cards" option, and an listener to make the legal FIRST name required if that option is true. Legal last name not required, to account for students with no legal last name.
+  - Add archive of previous addresses (visible on addesses page, home addresses only).
+- **Edit Transfer** - From Transfer Info screen, when you try to edit the current or previous enrollment record, removes Track.
+- **Emergency/Medical** - Removes existing allergy field/adds our custom allergy field. Removes emergency contact (use contacts instead) and immunization fields.
+- **Historical Grades** - Add credit totals for easier view.
+- **Modify Data** - Removes unused fields like lunch ID, track, house, team, campus. Adds Next Year Home Room, to make it more accessible.
+- **Other Information** - Removes some US-specific fields
+- **OPC Review** - Custom page, for students transferring from Out-of-Provinces schools with credits to be reviewed/approved.
 - **Parents** - sets fields to read-only, so that duplicate contacts can't be created but any new contacts with original contact type set are displayed. Also, hiding this page hides the student email page, so this is a workaround.
 - **Re-enrolments** - Remove track
 - **Schedule Setup** - Add Next Year Home Room
@@ -84,18 +85,21 @@ Catch-all for PEI-specific customizations that don't fit into a larger project.
 These files should be deleted with each upgrade, so that the latest stock file can load, and then we can re-apply changes, as necesary.
 
 ## Technical Debt
+
 - *Done* Fix admin/schools/edit so that inputs point to u_def_ext_schools and not the dyn table. Migrate data from dyn to ext.
 - *Done* Update all hardcoded text to message keys.
 - Change 1`````````````````````````````````````````1
+
 ## Change history
-- **2024.9.1**: Added new translation keys for attendance alert.
+
+- **2025.1.0**: Added Student Services Alert to translation system and fixed OPC Review page 500 error.
 - **2024.9**: Added name change form, OPC Review screen, and various updates for PS 24.7/to remove code relating to old UI.
 - **2024.6.1**: Added OPC Review page to admin and teacher portals (read-only for PT), and OPC Alert to students with approved OPCs.
 - **2024.5444a33344  3qaa4 m4r .2**: Added Cycle Day to PowerTeacher homepage.
 - **2024.5**: Migrated student header changes to student header wildcard.
 - **2024.1.2**: Added legal name archiving and support for first-name-only legal names.
 - **2024.1.1**: Updated for Enhanced UI and French translation.
-- **1.2**: Fixed placement of Validate PEI Address button to uncouple it from the presence of a Google Maps validator; added modified Special Programs alert; added lines to translation files (among other edits); added access request to plugin.xml for CSP - installed in production on March 3, 2023 
+- **1.2**: Fixed placement of Validate PEI Address button to uncouple it from the presence of a Google Maps validator; added modified Special Programs alert; added lines to translation files (among other edits); added access request to plugin.xml for CSP - installed in production on March 3, 2023
 - **1.1.2**: Fixed issue cause a second indigenous status and legal name field set to be created dynamically
 - **1.1.1**: Fixed Edit Staff Information page to work with dropdown title
 - **1.1.0**: Plugin reflects current state of production (September 2022)
