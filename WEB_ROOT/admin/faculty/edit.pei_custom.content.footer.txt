@@ -1,28 +1,45 @@
 <table>
 <tr id="staffMobile" class="oddRow">
 	<td class="bold">~[text:psx.htmlc.admin_faculty.edit.pei_custom.mobile_phone]</td>
-	<td>  <input type="text" name="[Users]mobile_phone" value="" size="25" maxlength="50">,</td>
+	<td>  <input type="text" name="[Users]mobile_phone" value="" size="25" maxlength="50"></td>
 </tr>
+<tr id="employeeId" class="evenRow">
+    <td class="bold">~[text:psx.htmlc.admin.faculty.edit.full_employee_id]</td>
+    <td><input type="text" name="[Users.U_USERS_EXTENSION]pei_employeeid" value="" size="25"></td>
+</tr>
+
+~[if.~(curschoolid) in (510,511,512,513,514,515)]
+    <tr id="teacherLevel" class="evenRow">
+        <td class="bold">~[text:psx.htmlc.admin.faculty.edit.teacher_level]</td>
+        <td><select name="[Users.U_Users_Extension]pei_level" id="selectLevel">~[x:codesetoptions;codetype=Teacher Level;includeblank;value=~([Users.U_Users_Extension]pei_level)]</select></td>
+    </tr>
+    <script>
+        $j('#editPageTRTitle').after($j('#teacherLevel'));
+    </script>
+[/if]
 </table>
 
 <div>
-    <select name="[Users]title" id="selectTitle">~[x:codesetoptions;codetype=Staff Title;includeblank;value=~([Users]title)]</select>
+    <select name="[05]title" id="selectTitle">~[x:codesetoptions;codetype=Staff Title;includeblank;value=~([05]title)]</select>
 </div>
 
 <script>
   $j(document).ready(function() {
-    $j('tr:contains(StatePrId)').remove();
-    $j('.headerrow').remove();
-    $j('input[name="SaveRace"]').closest('tr').remove();
-    $j('#primaryethnicity').closest('tr').remove();
-    $j('input[name="title"]').replaceWith($j('#selectTitle'));
-    $j('td:contains(~[text:psx.html.admin_faculty.new.home_phone_])').closest('tr').before($j('#staffMobile'));
 
-    $j('select[name="gender"]').closest('tr').remove();
-    $j('select[name="Ethnicity"]').closest('tr').remove();
-    $j('input[name="lunch_id"]').closest('tr').remove();
-    $j('input[name="ssn"]').closest('tr').remove();
-    $j('input[name="dob"]').closest('tr').remove()
+    $j('tr:contains(~[text:psx.html.admin_faculty.edit.ethnicity])').remove();
+    $j('#defaultEthnicity').closest('tr').remove();
+    $j('#race-label').closest('tr').remove();
+    $j('#statePrId').closest('tr').remove();
+    $j('#lunch_id').closest('tr').remove();
+    $j('#selectGender').closest('tr').remove();
+    $j('#ssn').closest('tr').remove();
+    $j('#dob').closest('tr').remove();
     
+    $j('#title').replaceWith($j('#selectTitle'));
+    $j('#home_phone').closest('tr').before($j('#staffMobile'));
+    $j('#editPageTRTeacherNumber').after($j('#employeeId'));
+
   });
+  
+
 </script>

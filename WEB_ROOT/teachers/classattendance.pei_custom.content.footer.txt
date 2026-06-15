@@ -9,6 +9,55 @@
             $j(this).attr('title',"~[text:psx.htmlc.wildcards.title_student_end.pei_custom.student_services_alert]");
             $j(this).attr('href', newUrl);
         });
+        
+          let attAlert = [~[tlist_sql;
+                        with ccstudents as (
+                select studentid, sectionid
+                from cc
+                where sectionid = ~(gpv.sectionid;sqlText))
+
+
+            SELECT 
+            	    cc.id, 
+            	    s.dcid,
+            	    case when nvl(satt.DM,0) = 0 then 'satisfactory.jpg'
+                        when nvl(satt.DABS,0) = 0 then 'satisfactory.jpg'
+                        when round((nvl(satt.DABS,0)/nvl(satt.DM,0))*100,2) between 0 and 4.99 then 'satisfactory.jpg'
+        				when round((nvl(satt.DABS,0)/nvl(satt.DM,0))*100,2) between 5 and 9.99 then 'atrisk.png'
+        				when round((nvl(satt.DABS,0)/nvl(satt.DM,0))*100,2) between 10 and 19.99 then 'chronic.png'
+        				when round((nvl(satt.DABS,0)/nvl(satt.DM,0))*100,2) >=20 then 'severechronic.jpg'
+    				end as iconimage,
+    				nvl(satt.DABS,0) as alertPerc
+    			FROM cc
+            INNER JOIN students s ON (cc.studentid = s.id)
+            join (
+            select 
+        				att.studentid as studentid,
+        				sum(att.membershipvalue) - sum(att.attendancevalue) DABS, 
+        				sum(att.attendancevalue) DA,
+        				sum(att.membershipvalue) DM
+                    from ps_adaadm_meeting_ptod att
+                    JOIN schools sch
+                    on sch.school_number=att.schoolid and NVL(sch.issummerschool,0)=0
+                    join terms t
+                    on t.schoolid = att.schoolid
+                    and att.calendardate between (t.firstday+1) and t.lastday
+                    and att.calendardate <= SYSDATE
+                    and att.schoolid < 900
+                    and t.id = 35 * 100
+                     join ccstudents ccs
+                     on ccs.studentid=att.studentid
+                    where NVL(sch.issummerschool,0)=0
+                    group by att.studentid
+        		) satt
+                on satt.studentid = s.id
+            	WHERE sectionid = ~(gpv.sectionid;sqlText)]
+            	{id:"ccid_~(id)",dcid:"~(dcid;t)",iconimage:"~(iconimage;t)"},
+            	[/tlist_sql]];
+            	console.log(attAlert);
+            for(i=0;i<attAlert.length;i++){
+                $j("table#attendance-table tr#"+attAlert[i].id+" td:nth-child(2)").prepend(`<a id="attPercentageAlert" href="/teachers/alerts/studentAttendancePercentageAlert.html?frn=001${attAlert[i].dcid}&iconimage=${attAlert[i].iconimage}" class="dialogM" title="~[text:psx.htmlc.wildcards.title_student_end_css.student_absence_percentage_alert]"><img  class="customIcons" src="/images/${attAlert[i].iconimage}" alt="~[text:psx.htmlc.wildcards.title_student_end_css.absence_percentage_alert]" border="0" width="24"></a>`);
+            }
     }); 
     
     // Mutation Observer that waits for the PSSP Alert to be present, and once it is, modifies its attributes and properties to remove mention of Special Education (Student services instead), and to redirect anyone who clicks to a special version of the alert.

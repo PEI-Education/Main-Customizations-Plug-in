@@ -1,5 +1,9 @@
 <script>
 $j(document).ready(function() {
    $j("#btn-navMeals").remove();
+    // Added for incident mgmt pilot
+    if (~(curschoolid) !== 513) {
+        $j("#btn-navStudentObservations").remove();
+   }
 });
 </script>

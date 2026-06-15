@@ -1,5 +1,6 @@
     <script>
         $j(document).ready(function() {
             $j('#btn-teacherComments').remove();
+            $j('#btn-lunchmenu').remove();
         });
     </script>
