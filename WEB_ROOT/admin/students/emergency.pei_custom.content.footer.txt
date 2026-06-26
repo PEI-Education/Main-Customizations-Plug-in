@@ -2,11 +2,18 @@
     <select name="[Students]allergies" id="selectAllergies">~[x:codesetoptions;codetype=Allergies;includeblank;value=~([Students]allergies)]</select>
 </div>
 
+<table><tr id="alert"><td colspan="3">
+    <div class="feedback-caution">Keep medical alert text concise - all staff have access to see this.Use the alert for information essential to a student's safety.All other medical information should be moved to the Special Medical Considerations field.</div>
+    </td></tr></table>
+
+
 <script>
 $j(function() {
    $j('input[name*="allergies"]').after($j('#selectAllergies'));
    $j('input[name*="allergies"]').remove();
    $j('tr:contains(Contact)').remove();
    $j('tr:contains(~[text:psx.html.admin_students.emergency.immunizations])').remove();
+   $j('#emergencyPageTRMedicalAlertText').before($j('#alert'));  
+   
 });
 </script>
