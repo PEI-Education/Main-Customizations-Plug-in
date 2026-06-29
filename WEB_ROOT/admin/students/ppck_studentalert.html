@@ -1,0 +1,451 @@
+<!--nolink-->
+<!DOCTYPE html>
+<html>
+<!-- start right frame -->
+<head>
+    <title>Student Alerts</title>
+    ~[wc:commonscripts]
+    <script type="text/javascript">
+        var PearsonCas = PearsonCas || { CasInfo: [], Utility: {} };
+        PearsonCas.CasInfo.push({
+            "File": "ppck_studentalert.html",
+            "Version": "22.11.00",
+            "Created By": "Lorenzo Lopez",
+            "Last Modified By": "Lorenzo Lopez",
+            "Customization Number": "",
+            "Developed for PowerSchool": "21.4.0.0",
+            "Current PowerSchool Version": "~[displaypref:lastversionnumber]"
+        });
+    </script>
+    ~[wc:CAS]
+    ~[wc:NCDPI]
+
+    <link href="/images/css/screen.css" rel="stylesheet" media="screen">
+    <link href="/images/css/print.css" rel="stylesheet" media="print">
+    <script src="js/ppck_tlist.js"></script>
+    <style type="text/css">
+        .alternateTable:nth-of-type(odd) {
+            background: #EDF3FE;
+        }
+
+        .alternateTable:nth-of-type(even) {
+            background: #D7EDF4;
+        }
+
+        #addRecord {
+            margin: 0px 0px 0px 20px !important;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    ~[wc:admin_header_frame_css]<!-- breadcrumb start --><a href="/admin/home.html" target="_top">~[text:psx.html.admin_students.modifydata.start_page]</a> &gt; <a href="/admin/students/home.html?selectstudent=nosearch" target="_top">~[text:psx.html.admin_students.modifydata.student_selection]</a> &gt; Student Alerts<!-- breadcrumb end -->~[wc:admin_navigation_frame_css]
+
+    ~[wc:title_student_begin_css]Student Alerts~[wc:title_student_end_css]
+    <div class="tabs">
+        <ul class="shown_tabs">
+            <li><a href="#tabOneContent">Custom Alerts</a></li>
+            <li><a href="#tabTwoContent">Legacy Custom Alerts</a></li>
+        </ul>
+
+        <div id="tabOneContent">
+
+            <form action="/admin/changesrecorded.white.html" method="POST">
+                <div id="id_form_save_alert_message" class="feedback-alert" style="display: none"> Your changes have not yet been saved.  Click the Submit button.</div>
+
+
+                <!-- start of content and bounding box -->
+                <div class="box-round" id="divData">
+                    <br />
+                    <a id="addRecord" class="button">New Alert</a>
+<!--                    <a id="calculateAlerts" class="button" title="Recalculating alerts will refresh the student alerts using the most up-to-date data on record for the student.">Recalculate</a>-->
+
+                    <table id="tableData" class="linkDescList" style="margin-top: 10px;">
+                        <thead>
+                            <tr class="headerRow">
+                                <th class="width25">Type</th>
+                                <th class="width20">Name</th>
+                                <th class="width20">Content</th>
+                                <th class="width20">Expire?</th>
+                                <th class="width10">Expires on</th>
+                                <th class="width10">Sort</th>
+                                <th class="width5">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ~[tlist_sql;SELECT
+                            SA.id,
+                            AD.alerttype,
+                            SA.ALERTDEF_ID,
+                            SA.studentsdcid,
+                            SA.NAME,
+                            SA.CONTENT,
+                            SA.EXP_YN,
+                            to_char(SA.EXP_DATE,'mm/dd/yyyy'),
+                            SA.SORTORDER
+                            FROM U_PPCK_STUDENTALERTS SA
+                            JOIN U_PPCK_ALERT_DEFINITION AD ON AD.ID = SA.ALERTDEF_ID
+                            WHERE SA.STUDENTSDCID = ~(RN)
+                            ORDER BY SA.SORTORDER]
+                            <tr class="delete-~(id) ~(alerttype;t)">
+                                <td>
+                                    <input type="hidden" name="blank" id="ALERTDEF_ID_VALUE_VALUE~(count;-)" value="~(ALERTDEF_ID;t)">
+                                    <select name="CF-[STUDENTS:~(studentdcid;t).U_PPCK_STUDENTALERTS.U_PPCK_STUDENTALERTS:~(id)]ALERTDEF_ID" class="ALERTDEF_ID_VALUE ~(alerttype;t;if.test=STUDENTFIELD;THEN=required;else=)" id="ALERTDEF_ID_VALUE~(count;-)">
+                                        <option value="" class="width10">Select</option>
+                                    </select>
+                                </td>
+
+                                <td><input type="text" name="CF-[STUDENTS:~(studentdcid;t).U_PPCK_STUDENTALERTS.U_PPCK_STUDENTALERTS:~(id)]NAME" value="~(NAME;t)" width="10" maxlength="60"></td>
+                                <td><textarea name="CF-[STUDENTS:~(studentdcid;t).U_PPCK_STUDENTALERTS.U_PPCK_STUDENTALERTS:~(id)]CONTENT" rows="5" cols="25">~(CONTENT;t)</textarea></td>
+                                <td>
+                                    <select name="CF-[STUDENTS:~(studentdcid;t).U_PPCK_STUDENTALERTS.U_PPCK_STUDENTALERTS:~(id)]EXP_YN" class="EXP_YN" id="EXP_YN~(count;-)">
+                                        <option value="N" ~(EXP_YN;t;if.test=N;THEN=SELECTED;else=)>No</option>
+                                        <option value="Y" ~(EXP_YN;t;if.test=Y;THEN=SELECTED;else=)>Yes</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="text" name="CF-[STUDENTS:~(studentdcid;t).U_PPCK_STUDENTALERTS.U_PPCK_STUDENTALERTS:~(id)]EXP_DATE" value="~(EXP_DATE;t)" width="10" class="psDateWidget">
+                                </td>
+                                <td><input type="text" name="CF-[STUDENTS:~(studentdcid;t).U_PPCK_STUDENTALERTS.U_PPCK_STUDENTALERTS:~(id)]SORTORDER" value="~(SORTORDER;t)" width="5" size="5"></td>
+                                <td>
+                                    <a name="deleteRecord" class="button">Delete Record</a>
+                                    <a name="deleteRecordCancel" class="button" style="display: none">Cancel Delete</a>
+                                    <a name="deleteRecordConfirm" class="button" style="display: none;background-color: Orange" data-id="~(id)">Confirm Delete</a>
+                                    <input type="hidden" data-name="DC-STUDENTS:~(studentdcid;t).U_PPCK_STUDENTALERTS.U_PPCK_STUDENTALERTS:~(id)" value="on" id="deleteInput-~(id)">
+                                </td>
+                            </tr>
+                            [/tlist_sql]
+                        </tbody>
+                    </table>
+                    <div class="button-row"><input type="hidden" name="ac" value="prim">~[submitbutton]</div>
+                </div>
+                <br>
+            </form>
+            <table style="display: none" class="alternateTable">
+                <tbody id="tbodyCloneData">
+                    <tr class="undo" id="clonedata">
+                        <td>
+                            <select data-name="CF-[STUDENTS:~(rn).U_PPCK_STUDENTALERTS.U_PPCK_STUDENTALERTS:-{INSERT_COUNTER}]ALERTDEF_ID" class="ALERTDEF_ID_VALUE" id="ALERTDEF_ID_VALUE{INSERT_COUNTER}">
+                                <option value="" class="width10">Select</option>
+                            </select>
+                        </td>
+                        <td><input type="text" data-name="CF-[STUDENTS:~(rn).U_PPCK_STUDENTALERTS.U_PPCK_STUDENTALERTS:-{INSERT_COUNTER}]NAME" value="" width="10" maxlength="60"></td>
+                        <td><textarea data-name="CF-[STUDENTS:~(rn).U_PPCK_STUDENTALERTS.U_PPCK_STUDENTALERTS:-{INSERT_COUNTER}]CONTENT" rows="5" cols="25"></textarea></td>
+                        <td>
+                            <select data-name="CF-[STUDENTS:~(rn).U_PPCK_STUDENTALERTS.U_PPCK_STUDENTALERTS:-{INSERT_COUNTER}]EXP_YN" class="SCHOLARSHIP">
+                                <option value="N" class="width5">No</option>
+                                <option value="Y" class="width5">Yes</option>
+                            </select>
+                        </td>
+                        <td><input type="text" data-name="CF-[STUDENTS:~(rn).U_PPCK_STUDENTALERTS.U_PPCK_STUDENTALERTS:-{INSERT_COUNTER}]EXP_DATE" value="" width="10" class="psDateWidgetChange"></td>
+                        <td><input type="text" data-name="CF-[STUDENTS:~(rn).U_PPCK_STUDENTALERTS.U_PPCK_STUDENTALERTS:-{INSERT_COUNTER}]SORTORDER" value="" width="5" size="5"></td>
+                        <td>
+                            <a name="undoNewRecord" class="button" data-id="undo">Undo</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="tabTwoContent">
+            <!-- start of content and bounding box -->
+            <div class="box-round">
+                <!-- Saving All student Alert Data from one place Steve Fernandes-->
+                <form action="/admin/changesrecorded.white.html" method="POST" onsubmit="setDefaultValues();">
+                    <table border="0" cellspacing="0" cellpadding="4">
+                        <tr bgcolor="#f6f6f6">
+                            <td colspan="4" class="bold">Medical Alert</td>
+                        </tr>
+                        <tr bgcolor="#edf3fe">
+                            <td class="bold">~[text:psx.html.admin_students.emergency.medical_alert_text]</td>
+                            <!-- Added caution for medical alerts -->
+                            <td colspan="2"><textarea name="[01]Alert_Medical" rows="4" cols="40"></textarea>
+                             <div class="feedback-caution">Keep medical alert text concise - all staff have access to see this.Use the alert for information essential to a student's safety.All other medical information should be moved to the Special Medical Considerations field.</div>
+                            <!-- End of caution for medical alerts (Tiwi Ipaye 29th June 2026) -->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="bold">~[text:psx.html.admin_students.emergency.alert_expires,param:(date)]</td>
+                            <td colspan="2">
+                                <input type="text" name="[01]Alert_MedicalExpires" value="" size="10"> ~[text:psx.html.admin_students.emergency._to_never_expire,param:~[i18shortdate:0/0/0]]
+                            </td>
+                        </tr>
+                        <tr bgcolor="#f6f6f6">
+                            <td colspan="4" class="bold">~[text:psx.html.admin_students.misc.other_alert]</td>
+                        </tr>
+                        <tr bgcolor="#edf3fe">
+                            <td class="bold">~[text:psx.html.admin_students.misc.other_alert_text]</td>
+                            <td colspan="3"><textarea name="[01]Alert_Other" rows="4" cols="40"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td class="bold">~[text:psx.html.admin_students.misc.alert_expires,param:(Date)]</td>
+                            <td colspan="3"><input type="text" name="[01]Alert_OtherExpires" value="" size="10"> ~[text:psx.html.admin_students.misc._to_never_expire,param:~[i18shortdate:0/0/0]]</td>
+                        </tr>
+                        <!-- Adding guardian alert to this list -->
+                        <tr bgcolor="#f6f6f6">
+                            <td colspan="2" class="bold">~[text:psx.html.admin_students.parentsguardian.guardian_alert]</td>
+                        </tr>
+                        <tr bgcolor="#edf3fe">
+                            <td class="bold">~[text:psx.html.admin_students.parentsguardian.guardian_alert_text]</td>
+                            <td colspan="2"><textarea name="[01]Alert_Guardian" rows="4" cols="40"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td class="bold">~[text:psx.html.admin_students.parentsguardian.alert_expires,param:(date)]</td>
+                            <td colspan="2"><input type="text" class="psDateWidget" name="[01]Alert_GuardianExpires" value="" size="10"> ~[text:psx.html.admin_students.parentsguardian._to_never_expire,param:~[i18shortdate:0/0/0]]</td>
+                        </tr>
+                        <!-- End of changes Steve Fernandes -->
+                        <!-- Check if admin user is at district level -->
+                        ~[if#school.~(curschoolid)=0]
+                        <!-- use district preference -->
+                        ~[if.~[pref:ELL_ALERT]=1]
+                        <tr bgcolor="#f6f6f6">
+                            <td colspan="4" class="bold">ELL Alert</td>
+                        </tr>
+
+                        <tr>
+                            <td class="bold">ELL Alert Text</td>
+                            <td colspan="3"><textarea name="[Students.U_CUSTOM_ALERTS]Alert_ELL" rows="4" cols="40"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td class="bold">Alert Expires (Date)</td>
+                            <td colspan="3"><input type="text" name="[Students.U_CUSTOM_ALERTS]Alert_ELLExpires" id="ell-date" value="" size="10" class="psDateWidget"> ~[text:psx.html.admin_students.misc._to_never_expire,param:~[i18shortdate:0/0/0]]</td>
+                        </tr>
+                        [/if]
+                        ~[if.~[pref:504_ALERT]=1]
+                        <tr bgcolor="#f6f6f6">
+                            <td colspan="4" class="bold">504 Alert</td>
+                        </tr>
+
+                        <tr>
+                            <td class="bold">504 Alert Text</td>
+                            <td colspan="3"><textarea name="[Students.U_CUSTOM_ALERTS]Alert_504" rows="4" cols="40"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td class="bold">Alert Expires (Date)</td>
+                            <td colspan="3"><input type="text" name="[Students.U_CUSTOM_ALERTS]Alert_504Expires" id="504-date" value="" size="10" class="psDateWidget"> ~[text:psx.html.admin_students.misc._to_never_expire,param:~[i18shortdate:0/0/0]]</td>
+                        </tr>
+                        [/if]
+                        ~[if.~[pref:IEP_ALERT]=1]
+                        <tr bgcolor="#f6f6f6">
+                            <td colspan="4" class="bold">IEP Alert</td>
+                        </tr>
+                        <tr>
+                            <td class="bold">IEP Alert Text</td>
+                            <td colspan="3"><textarea name="[Students.U_CUSTOM_ALERTS]Alert_IEP" rows="4" cols="40"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td class="bold">Alert Expires (Date)</td>
+                            <td colspan="3"><input type="text" name="[Students.U_CUSTOM_ALERTS]Alert_IEPExpires" id="IEP-date" value="" size="10" class="psDateWidget"> ~[text:psx.html.admin_students.misc._to_never_expire,param:~[i18shortdate:0/0/0]]</td>
+                        </tr>
+                        [/if]
+                        ~[if.~[pref:SPED_ALERT]=1]
+                        <tr bgcolor="#f6f6f6">
+                            <td colspan="4" class="bold">Special Education Alert</td>
+                        </tr>
+                        <tr>
+                            <td class="bold">SPED Alert Text</td>
+                            <td colspan="3"><textarea name="[Students.U_CUSTOM_ALERTS]Alert_SPED" rows="4" cols="40"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td class="bold">Alert Expires (Date)</td>
+                            <td colspan="3"><input type="text" name="[Students.U_CUSTOM_ALERTS]Alert_SPEDExpires" id="sped-date" value="" size="10" class="psDateWidget"> ~[text:psx.html.admin_students.misc._to_never_expire,param:~[i18shortdate:0/0/0]]</td>
+                        </tr>
+                        [/if]
+                        ~[if.~[pref:CUST_ALERT]=1]
+                        <tr bgcolor="#f6f6f6">
+                            <td colspan="4" class="bold">~[displaypref:alert_cust_name] Alert</td>
+                        </tr>
+                        <tr>
+                            <td class="bold">~[displaypref:alert_cust_name] Alert Text</td>
+                            <td colspan="3"><textarea name="[Students.U_CUSTOM_ALERTS]Alert_CUST" rows="4" cols="40"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td class="bold">Alert Expires (Date)</td>
+                            <td colspan="3"><input type="text" name="[Students.U_CUSTOM_ALERTS]Alert_CUSTExpires" id="cust-date" value="" size="10" class="psDateWidget"> ~[text:psx.html.admin_students.misc._to_never_expire,param:~[i18shortdate:0/0/0]]</td>
+                        </tr>
+                        [/if]
+
+                        [else#school]
+                        <!-- use school Level Preference -->
+                        ~[if.prefschool.ELL_ALERT=1]
+                        <tr bgcolor="#f6f6f6">
+                            <td colspan="4" class="bold">ELL Alert</td>
+                        </tr>
+
+                        <tr>
+                            <td class="bold">ELL Alert Text</td>
+                            <td colspan="3"><textarea name="[Students.U_CUSTOM_ALERTS]Alert_ELL" rows="4" cols="40"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td class="bold">Alert Expires (Date)</td>
+                            <td colspan="3"><input type="text" name="[Students.U_CUSTOM_ALERTS]Alert_ELLExpires" id="ell-date" value="" size="10" class="psDateWidget"> ~[text:psx.html.admin_students.misc._to_never_expire,param:~[i18shortdate:0/0/0]]</td>
+                        </tr>
+                        [/if]
+                        ~[if.prefschool.504_ALERT=1]
+                        <tr bgcolor="#f6f6f6">
+                            <td colspan="4" class="bold">504 Alert</td>
+                        </tr>
+
+                        <tr>
+                            <td class="bold">504 Alert Text</td>
+                            <td colspan="3"><textarea name="[Students.U_CUSTOM_ALERTS]Alert_504" rows="4" cols="40"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td class="bold">Alert Expires (Date)</td>
+                            <td colspan="3"><input type="text" name="[Students.U_CUSTOM_ALERTS]Alert_504Expires" id="504-date" value="" size="10" class="psDateWidget"> ~[text:psx.html.admin_students.misc._to_never_expire,param:~[i18shortdate:0/0/0]]</td>
+                        </tr>
+                        [/if]
+                        ~[if.prefschool.IEP_ALERT=1]
+                        <tr bgcolor="#f6f6f6">
+                            <td colspan="4" class="bold">IEP Alert</td>
+                        </tr>
+                        <tr>
+                            <td class="bold">IEP Alert Text</td>
+                            <td colspan="3"><textarea name="[Students.U_CUSTOM_ALERTS]Alert_IEP" rows="4" cols="40"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td class="bold">Alert Expires (Date)</td>
+                            <td colspan="3"><input type="text" name="[Students.U_CUSTOM_ALERTS]Alert_IEPExpires" id="IEP-date" value="" size="10" class="psDateWidget"> ~[text:psx.html.admin_students.misc._to_never_expire,param:~[i18shortdate:0/0/0]]</td>
+                        </tr>
+                        [/if]
+                        ~[if.prefschool.SPED_ALERT=1]
+                        <tr bgcolor="#f6f6f6">
+                            <td colspan="4" class="bold">Special Education Alert</td>
+                        </tr>
+                        <tr>
+                            <td class="bold">SPED Alert Text</td>
+                            <td colspan="3"><textarea name="[Students.U_CUSTOM_ALERTS]Alert_SPED" rows="4" cols="40"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td class="bold">Alert Expires (Date)</td>
+                            <td colspan="3"><input type="text" name="[Students.U_CUSTOM_ALERTS]Alert_SPEDExpires" id="sped-date" value="" size="10" class="psDateWidget"> ~[text:psx.html.admin_students.misc._to_never_expire,param:~[i18shortdate:0/0/0]]</td>
+                        </tr>
+
+                        [/if]
+                        ~[if.~[prefschool:CUST_ALERT]=1]
+                        <tr bgcolor="#f6f6f6">
+                            <td colspan="4" class="bold">~[displaypref:alert_cust_name] Alert</td>
+                        </tr>
+                        <tr>
+                            <td class="bold">~[displaypref:alert_cust_name] Alert Text</td>
+                            <td colspan="3"><textarea name="[Students.U_CUSTOM_ALERTS]Alert_CUST" rows="4" cols="40"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td class="bold">Alert Expires (Date)</td>
+                            <td colspan="3"><input type="text" name="[Students.U_CUSTOM_ALERTS]Alert_CUSTExpires" id="cust-date" value="" size="10" class="psDateWidget"> ~[text:psx.html.admin_students.misc._to_never_expire,param:~[i18shortdate:0/0/0]]</td>
+                        </tr>
+                        [/if]
+
+                        [/if#school]
+
+                        <tr>
+                            <td colspan="4">
+                                <div class="button-row"><input type="hidden" name="frn" value="~(studentfrn)"><input type="hidden" name="ac" value="prim">~[submitbutton]</div>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var cnt = 0;
+        //prpk-1343 - excluding date widgets for encoding
+        function encodeFormData() {
+            document.querySelectorAll('input[type="text"]:not(.psDateWidget)').forEach(input => {
+                //console.log(input);
+                input.value = encodeURIComponent(input.value);
+            });
+        };
+       
+        function disableSubmit() {
+            $j('#btnSubmit').attr('disabled', 'true');
+        }
+
+        function enableSubmit() {
+            $j('#btnSubmit').removeAttr('disabled');
+        }
+
+        function validateAwardForm() {
+            var formValid = true;
+            $j('#divData').find('.ALERTDEF_ID_VALUE').each(function () {
+                console.log();
+                if (!this.value && $j(this).closest('tr').hasClass('STUDENTFIELD') === false) {
+                    formValid = false;
+                    $j(this).parent().attr('style', 'background-color: rgb(205, 92, 92);');
+                } else {
+                    $j(this).parent().removeAttr('style');
+                }
+            });
+            if (formValid == false) {
+                disableSubmit();
+            } else {
+                enableSubmit();
+            }
+        }
+
+        function decodeFormData() {
+            //Decode input text for student alerts
+            document.querySelectorAll('input[type="text"]').forEach(input => {
+                input.value = decodeURIComponent(input.value);
+            });
+            //Decode text area for student alerts
+            document.querySelectorAll('textarea').forEach(input => {
+                input.value = decodeURIComponent(input.value);
+            });
+            // Decode title attributes of all <a> elements for student alerts
+            document.querySelectorAll('a[title]').forEach(anchor => {
+                anchor.title = decodeURIComponent(anchor.title);
+            });
+
+            // Decode title attributes of all <img> elements for student alerts
+            document.querySelectorAll('img[title]').forEach(img => {
+                img.title = decodeURIComponent(img.title);
+            });
+        }
+
+        $j(document).ready(function () {
+            decodeFormData();
+            $j('.STUDENTFIELD').each(function () {
+                $j(this).find('input,select,textarea').attr('disabled', 'disabled').removeClass('required');
+                $j(this).find('.button').remove();
+                $j(this).find('td:eq(0)').html('Field Based Alert');
+            });
+            $j('form').change(function () {
+                $j('#id_form_save_alert_message').show();
+                validateAwardForm();
+            });
+            // $j('#calculateAlerts').click(function () {
+            //     $j(this).remove();
+            //     $j('#addRecord').after('<span id="recaulateMessage" class="feedback-alert" style="display: inline">Calculating... this process may take several minutes. You may navigate away from this page.</span>');
+            //     $j('#addRecord').remove();
+            //     $j.get('/admin/district/ppck_calculatealerts.html?frn=~(studentfrn)', function (r) {
+            //         console.log(r);
+            //         $j('#recaulateMessage').text(r).removeClass('feedback-alert').addClass('feedback-confirm');
+            //     })
+            // });
+            //START CODE BLOCK FOR ALERT DEFINITIONS
+            var award_types = {};
+            ~[tlist_sql; SELECT g.id, g.name FROM u_ppck_alert_definition G WHERE NVL(ALERTTYPE, 'ABC123XYZ') <> 'STUDENTFIELD' ORDER BY g.NAME]
+            $j('.ALERTDEF_ID_VALUE').append('<option value="~(1;t)">' + decodeURIComponent("~(2;t)") + '</option>');[/tlist_sql]
+            $j('.ALERTDEF_ID_VALUE').each(function (i, v) {
+                var inputValue = $j('#ALERTDEF_ID_VALUE_VALUE' + i).val();
+                $j('#ALERTDEF_ID_VALUE' + i).val(inputValue);
+            });
+            //END CODE BLOCK FOR ALERT DEFINITIONS
+            disableSubmit();
+            $j('#btnSubmit').click(function (event) {
+                var globalResult = true;
+                if (globalResult === true) {
+                    encodeFormData();
+                    $j('#mainForm').submit();
+                }
+        });
+        });
+        window.addEventListener('load', function(event) {
+            decodeFormData();
+        });
+    </script>
+~[wc:studentalertsplugindata]~[wc:studentalertsplugindata]</body>
+</html><!-- end right frame -->
